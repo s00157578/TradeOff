@@ -10,6 +10,10 @@ namespace TradeOff.API.Entities
 {
     public class ProductImage
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+        [Required]
         [ForeignKey("ProductId")]
         public int ProductId { get; set; }
         [Required]
