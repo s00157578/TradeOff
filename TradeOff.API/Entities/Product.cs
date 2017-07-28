@@ -18,6 +18,12 @@ namespace TradeOff.API.Entities
         public string FullDescription { get; set; }
         [Required]
         public decimal Price { get; set; }
-        public ICollection<ProductImage> ProductImages { get; set; } = new List<ProductImage>();
+        [ForeignKey("CategoryId")]
+        public int CategoryId { get; set; }
+        public virtual Category Category { get; set; }
+        [ForeignKey("UserId")]
+        public int UserId { get; set; }
+        public virtual  User User { get; set; }
+        public virtual ICollection<ProductImage> ProductImages { get; set; } = new List<ProductImage>();
     }
 }
