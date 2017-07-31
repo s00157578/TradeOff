@@ -1,13 +1,16 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-namespace TradeOff.API.Entities
+using System.Linq;
+using System.Threading.Tasks;
+using TradeOff.API.Entities;
+
+namespace TradeOff.API.Models
 {
-    public class Product
+    public class ProductModel
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Required]
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
@@ -20,14 +23,11 @@ namespace TradeOff.API.Entities
         public string FullDescription { get; set; }
         [Required]
         public decimal Price { get; set; }
-        [ForeignKey("CategoryId")]
-        public int CategoryId { get; set; }
         [Required]
         public string CategoryName { get; set; }
-        public virtual Category Category { get; set; }
-        [ForeignKey("UserId")]
+        [Required]
         public int UserId { get; set; }
-        public virtual  User User { get; set; }
-        public virtual ICollection<ProductImage> ProductImages { get; set; } = new List<ProductImage>();
+
+        public Category Categories { get; set; }
     }
 }

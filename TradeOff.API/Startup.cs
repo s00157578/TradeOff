@@ -46,6 +46,15 @@ namespace TradeOff.API
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             app.UseMvc();
+
+            AutoMapper.Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<Entities.Product, Models.ProductModel>(); //Source followed by destination
+                cfg.CreateMap<Entities.ProductImage, Models.ProductImageModel>();
+                cfg.CreateMap<Models.ProductCreateModel, Entities.Product>();
+                cfg.CreateMap<Models.ProductImageCreateModel, Entities.ProductImage>();
+            });
+
             loggerFactory.AddConsole();
 
             if (env.IsDevelopment())

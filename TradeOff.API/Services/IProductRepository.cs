@@ -9,6 +9,7 @@ namespace TradeOff.API.Services
     public interface IProductRepository
     {
         bool ProductExists(int productId);
+        Category GetCategory(int categoryId);
         IEnumerable<Product> GetProducts();
         Product GetProduct(int productId);
         IEnumerable<Product> GetProductsByCategory(int categoryId);

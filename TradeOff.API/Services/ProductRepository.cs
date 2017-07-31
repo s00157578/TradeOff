@@ -11,12 +11,19 @@ namespace TradeOff.API.Services
         private TradeOffContext _context;
         public void AddProduct(int categoryId, Product product)
         {
-            _context.Products.Add(product);
+            var category = GetCategory(categoryId);
+            category.Products.Add(product);
         }
         public void DeleteProduct(Product product)
         {
             _context.Products.Remove(product);
         }
+
+        public Category GetCategory(int categoryId)
+        {
+            return _context.Categories.FirstOrDefault(c => c.Id == categoryId);
+        }
+
         public Product GetProduct(int productId)
         {
             return _context.Products.FirstOrDefault(p => p.Id == productId);
