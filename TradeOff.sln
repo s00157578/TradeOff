@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeOffAndroidApp", "Trade
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradeOff.API", "TradeOff.API\TradeOff.API.csproj", "{702140ED-7BD1-4235-BB65-C00BF544E27F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeOffAndroidApp.Core", "TradeOffAndroidApp.Core\TradeOffAndroidApp.Core.csproj", "{67F9D3A8-F71E-4428-913F-C37AE82CDB24}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{702140ED-7BD1-4235-BB65-C00BF544E27F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{702140ED-7BD1-4235-BB65-C00BF544E27F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{702140ED-7BD1-4235-BB65-C00BF544E27F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67F9D3A8-F71E-4428-913F-C37AE82CDB24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67F9D3A8-F71E-4428-913F-C37AE82CDB24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67F9D3A8-F71E-4428-913F-C37AE82CDB24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67F9D3A8-F71E-4428-913F-C37AE82CDB24}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

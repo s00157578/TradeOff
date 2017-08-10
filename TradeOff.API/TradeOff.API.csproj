@@ -5,10 +5,52 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="SeedImages\Acer1.png" />
+    <Content Include="SeedImages\Acer2.png" />
+    <Content Include="SeedImages\ball1.jpg" />
+    <Content Include="SeedImages\ball2.jpg" />
+    <Content Include="SeedImages\bed1.jpg" />
+    <Content Include="SeedImages\bed2.jpg" />
+    <Content Include="SeedImages\blender1.jpg" />
+    <Content Include="SeedImages\blender2.jpg" />
+    <Content Include="SeedImages\board1.jpg" />
+    <Content Include="SeedImages\board2.jpg" />
+    <Content Include="SeedImages\Iphone1.jpg" />
+    <Content Include="SeedImages\iphone2.png" />
+    <Content Include="SeedImages\kayak1.jpg" />
+    <Content Include="SeedImages\kayak2.jpg" />
+    <Content Include="SeedImages\kettle1.jpg" />
+    <Content Include="SeedImages\kettle2.jpg" />
+    <Content Include="SeedImages\microwave1.jpg" />
+    <Content Include="SeedImages\microwave2.jpg" />
+    <Content Include="SeedImages\mower1.jpg" />
+    <Content Include="SeedImages\mower2.jpg" />
+    <Content Include="SeedImages\nokia1.jpg" />
+    <Content Include="SeedImages\nokia2.jpg" />
+    <Content Include="SeedImages\phillips1.jpg" />
+    <Content Include="SeedImages\phillips2.jpg" />
+    <Content Include="SeedImages\radio1.jpg" />
+    <Content Include="SeedImages\radio2.jpg" />
+    <Content Include="SeedImages\samsung1.jpg" />
+    <Content Include="SeedImages\samsung2.jpg" />
+    <Content Include="SeedImages\sofa1.jpg" />
+    <Content Include="SeedImages\sofa2.jpg" />
+    <Content Include="SeedImages\strimmer1.jpg" />
+    <Content Include="SeedImages\strimmer2.jpg" />
+    <Content Include="SeedImages\table1.jpg" />
+    <Content Include="SeedImages\table2.jpg" />
+    <Content Include="SeedImages\trimmer1.jpg" />
+    <Content Include="SeedImages\trimmer2.jpg" />
+    <Content Include="SeedImages\xbox1.jpg" />
+    <Content Include="SeedImages\xbox2.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="6.1.1" />
+    <PackageReference Include="CoreCompat.System.Drawing" Version="1.0.0-beta006" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="1.1.2" />

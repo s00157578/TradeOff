@@ -21,9 +21,7 @@ namespace TradeOff.API.Entities
         [Required]
         public decimal Price { get; set; }
         [ForeignKey("CategoryId")]
-        public int CategoryId { get; set; }
-        [Required]
-        public string CategoryName { get; set; }
+        public int CategoryId { get; set; } 
         public virtual Category Category { get; set; }
         [ForeignKey("UserId")]
         public int UserId { get; set; }

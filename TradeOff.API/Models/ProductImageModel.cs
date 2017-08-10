@@ -8,7 +8,8 @@ namespace TradeOff.API.Models
 {
     public class ProductImageModel
     {
-        [Required]
+        public int Id { get; set; }
         public byte[] Image { get; set; }
+        public bool IsMainImage { get; set; }
     }
 }

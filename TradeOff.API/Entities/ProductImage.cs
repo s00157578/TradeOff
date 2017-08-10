@@ -18,6 +18,8 @@ namespace TradeOff.API.Entities
         public int ProductId { get; set; }
         [Required]
         public byte[] Image { get; set; }
+        [Required]
+        public bool IsMainImage { get; set; }
         public Product Product { get; set; }
     }
 }

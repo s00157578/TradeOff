@@ -19,33 +19,30 @@
             android:id="@+id/Addimage"
             android:layout_gravity="center_horizontal" />
         <TextView
-            android:text="Item Name"
+            android:text="Category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/txtViewProductName"
-            android:paddingTop="20dp"
+            android:id="@+id/txtViewCategories"
             android:textSize="10dp"
             android:textColor="@android:color/black" />
-        <EditText
+        <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/txtEditProductName"
-            android:paddingTop="20dp"
-            android:textSize="10dp"
-            android:textColor="@android:color/black"
-            android:background="@android:drawable/dialog_holo_light_frame" />
+            android:id="@+id/dropdownCategoriese"            
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown" />
         <TextView
-            android:text="Location"
+            android:text="Name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/txtViewLocation"
+            android:id="@+id/txtViewName"
             android:paddingTop="20dp"
             android:textSize="10dp"
             android:textColor="@android:color/black" />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/txtEditLocation"
+            android:id="@+id/txtEditName"
             android:paddingTop="20dp"
             android:textSize="10dp"
             android:textColor="@android:color/black"

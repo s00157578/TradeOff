@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace TradeOff.API.Entities
 {
-    public sealed class TradeOffContext : DbContext
+    public sealed class TradeOffContext : IdentityDbContext
     {
         public TradeOffContext(DbContextOptions<TradeOffContext> options)
             : base(options)
