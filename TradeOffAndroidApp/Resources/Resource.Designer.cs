@@ -50,6 +50,9 @@ namespace TradeOffAndroidApp
 			// aapt resource value: 0x7f020001
 			public const int Icon = 2130837505;
 			
+			// aapt resource value: 0x7f020002
+			public const int TradeOff = 2130837506;
+			
 			static Drawable()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -66,26 +69,56 @@ namespace TradeOffAndroidApp
 			// aapt resource value: 0x7f050001
 			public const int Addimage = 2131034113;
 			
-			// aapt resource value: 0x7f050011
-			public const int btnBack = 2131034129;
+			// aapt resource value: 0x7f05000e
+			public const int ListviewCategories = 2131034126;
+			
+			// aapt resource value: 0x7f05001d
+			public const int ListviewProducts = 2131034141;
+			
+			// aapt resource value: 0x7f05000f
+			public const int TradeOffIcon = 2131034127;
+			
+			// aapt resource value: 0x7f05001a
+			public const int btnBack = 2131034138;
 			
 			// aapt resource value: 0x7f05000c
 			public const int btnCancel = 2131034124;
 			
+			// aapt resource value: 0x7f050014
+			public const int btnCategories = 2131034132;
+			
 			// aapt resource value: 0x7f050012
-			public const int btnPurchase = 2131034130;
+			public const int btnCreateAccount = 2131034130;
+			
+			// aapt resource value: 0x7f050013
+			public const int btnLogin = 2131034131;
+			
+			// aapt resource value: 0x7f05001b
+			public const int btnPurchase = 2131034139;
+			
+			// aapt resource value: 0x7f050015
+			public const int btnSellProduct = 2131034133;
 			
 			// aapt resource value: 0x7f05000d
 			public const int btnSubmit = 2131034125;
 			
+			// aapt resource value: 0x7f050016
+			public const int btnYourProducts = 2131034134;
+			
 			// aapt resource value: 0x7f050003
 			public const int dropdownCategoriese = 2131034115;
 			
-			// aapt resource value: 0x7f05000e
-			public const int imageProduct = 2131034126;
+			// aapt resource value: 0x7f050017
+			public const int imageProduct = 2131034135;
 			
 			// aapt resource value: 0x7f050000
 			public const int mainScrollView = 2131034112;
+			
+			// aapt resource value: 0x7f05001c
+			public const int textCategory = 2131034140;
+			
+			// aapt resource value: 0x7f050011
+			public const int txtEditEmail = 2131034129;
 			
 			// aapt resource value: 0x7f050009
 			public const int txtEditFullDescription = 2131034121;
@@ -102,11 +135,14 @@ namespace TradeOffAndroidApp
 			// aapt resource value: 0x7f050002
 			public const int txtViewCategories = 2131034114;
 			
+			// aapt resource value: 0x7f050010
+			public const int txtViewEmail = 2131034128;
+			
 			// aapt resource value: 0x7f050008
 			public const int txtViewFullDescription = 2131034120;
 			
-			// aapt resource value: 0x7f050010
-			public const int txtViewLocation = 2131034128;
+			// aapt resource value: 0x7f050019
+			public const int txtViewLocation = 2131034137;
 			
 			// aapt resource value: 0x7f050004
 			public const int txtViewName = 2131034116;
@@ -114,8 +150,8 @@ namespace TradeOffAndroidApp
 			// aapt resource value: 0x7f05000a
 			public const int txtViewPrice = 2131034122;
 			
-			// aapt resource value: 0x7f05000f
-			public const int txtViewProductName = 2131034127;
+			// aapt resource value: 0x7f050018
+			public const int txtViewProductName = 2131034136;
 			
 			// aapt resource value: 0x7f050006
 			public const int txtViewShortDescription = 2131034118;
@@ -137,7 +173,22 @@ namespace TradeOffAndroidApp
 			public const int AddProductView = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int IndividualProductView = 2130903041;
+			public const int Categories = 2130903041;
+			
+			// aapt resource value: 0x7f030002
+			public const int CreateAccount = 2130903042;
+			
+			// aapt resource value: 0x7f030003
+			public const int HomePage = 2130903043;
+			
+			// aapt resource value: 0x7f030004
+			public const int IndividualProductView = 2130903044;
+			
+			// aapt resource value: 0x7f030005
+			public const int Login = 2130903045;
+			
+			// aapt resource value: 0x7f030006
+			public const int ProductsList = 2130903046;
 			
 			static Layout()
 			{

@@ -28,7 +28,7 @@
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/dropdownCategoriese"            
+            android:id="@+id/dropdownCategoriese"
             android:background="@android:drawable/btn_dropdown"
             android:spinnerMode="dropdown" />
         <TextView

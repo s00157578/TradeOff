@@ -12,13 +12,14 @@ using Android.Widget;
 
 namespace TradeOffAndroidApp
 {
-    [Activity(Label = "AddProductActivity")]
-    public class AddProductActivity : Activity
+    [Activity(Label = "ProductListActivity")]
+    public class ProductListActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.AddProductView);
+
+            // Create your application here
         }
     }
 }

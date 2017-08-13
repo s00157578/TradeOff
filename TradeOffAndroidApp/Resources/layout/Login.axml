@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/TradeOffIcon"
+        android:src="@drawable/TradeOff" />
+    <TextView
+        android:text="Email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtViewEmail"
+        android:paddingTop="20dp"
+        android:textSize="10dp"
+        android:textColor="@android:color/black" />
+    <EditText
+        android:inputType="textEmailAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtEditEmail"
+        android:paddingTop="20dp"
+        android:textSize="10dp"
+        android:textColor="@android:color/black"
+        android:background="@android:drawable/dialog_holo_light_frame" />
+    <TextView
+        android:text="Password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtViewPrice"
+        android:paddingTop="20dp"
+        android:textSize="10dp"
+        android:textColor="@android:color/black" />
+    <EditText
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtEditroductName"
+        android:paddingTop="20dp"
+        android:textSize="10dp"
+        android:textColor="@android:color/black"
+        android:background="@android:drawable/dialog_holo_light_frame" />
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
+        <Button
+            android:text="Create Account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnCreateAccount"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="35dp"
+            android:background="@android:color/holo_blue_dark"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp" />
+        <Button
+            android:text="Log In"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnLogin"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="35dp"
+            android:background="@android:color/holo_green_light"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp" />
+    </RelativeLayout>
+</LinearLayout>

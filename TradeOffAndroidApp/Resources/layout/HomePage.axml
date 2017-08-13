@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/TradeOffIcon"
+        android:src="@drawable/TradeOff" />
+    <Button
+        android:text="View Categories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnCategories"
+        android:background="@android:color/holo_blue_dark"
+        android:layout_margin="5dp" />
+    <Button
+        android:text="Sell a Product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnSellProduct"
+        android:background="@android:color/holo_blue_dark"
+        android:layout_margin="5dp" />
+    <Button
+        android:text="View your products"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnYourProducts"
+        android:background="@android:color/holo_blue_dark"
+        android:layout_margin="5dp" />
+    <Button
+        android:text="Log In"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnLogin"
+        android:layout_margin="5dp"
+        android:background="@android:color/holo_green_light" />
+</LinearLayout>

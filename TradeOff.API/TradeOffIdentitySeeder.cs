@@ -24,32 +24,24 @@ namespace TradeOff.API
                 var user = new User()
                 {
                     UserName = "kVesey",
-                    FirstName = "Kevin",
-                    LastName = "Vesey",
                     Email = "S00157578@mail.itsligo.ie"
                 };
                 addIdentity(user, userStore);
                 user = new User()
                 {
                     UserName = "jBlogg",
-                    FirstName = "Joe",
-                    LastName = "Blogg",
                     Email = "noMail@mail.itsligo.ie"
                 };
                 addIdentity(user, userStore);
                 user = new User()
                 {
                     UserName = "sBlogg",
-                    FirstName = "Steve",
-                    LastName = "Blogg",
                     Email = "stillNoMail@mail.itsligo.ie"
                 };
                 addIdentity(user, userStore);
                 user = new User()
                 {
                     UserName = "kvesey2",
-                    FirstName = "kev",
-                    LastName = "vesey",
                     Email = "kevinvesey7@gmail.com"
                 };
                 addIdentity(user, userStore);
