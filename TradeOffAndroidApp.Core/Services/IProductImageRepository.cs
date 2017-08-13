@@ -10,8 +10,8 @@ namespace TradeOffAndroidApp.Core.Services
     {
         Task<IEnumerable<ProductImageModel>> GetMainProductImages();
         Task<IEnumerable<ProductImageModel>> GetProductImages(int productId);
-        Task<bool> DeleteProductImage(int productImageId);
+        bool DeleteProductImage(int productImageId);
         Task<ProductImageModel> AddProductImage(int productId, ProductImageCreateModel productImage);
-        Task<bool> UpdateProductImage(int productId, int productImageId, ProductImageUpdateModel productImage);
+        bool UpdateProductImage(int productId, int productImageId, ProductImageUpdateModel productImage);
     }
 }

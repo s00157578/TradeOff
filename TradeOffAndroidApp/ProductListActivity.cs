@@ -9,17 +9,46 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using TradeOffAndroidApp.Core.Services;
+using TradeOffAndroidApp.Core;
+using TradeOffAndroidApp.Adapters;
 
 namespace TradeOffAndroidApp
 {
-    [Activity(Label = "ProductListActivity")]
+    [Activity(Label = "Product List")]
     public class ProductListActivity : Activity
     {
+        private ProductRepository _productRepository;
+        private ProductImageRepository _productImageRepository;
+        private List<ProductModel> _productList;
+        private ListView _productListView;
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            _productRepository = new ProductRepository();
+            _productImageRepository = new ProductImageRepository();
             base.OnCreate(savedInstanceState);
-
+            var SelectedCategoryId = Intent.Extras.GetInt("selectedCategoryId");
+            PopulateList(SelectedCategoryId);
+            SetContentView(Resource.Layout.ProductsList);
+            FindViews();
+            _productListView.Adapter = new ProductListDataAdapter(this, _productList);
+            _productListView.FastScrollEnabled = true;
             // Create your application here
+        }
+        private async void PopulateList(int id)
+        {
+            if (_productListView == null)
+            {
+                var products = await _productRepository.GetProductsByCategory(id);
+                _productList = products.ToList();
+            }
+        }
+        private async void PopulateImageList()
+        {
+        }
+        private void FindViews()
+        {
+            _productListView = FindViewById<ListView>(Resource.Id.ListviewProducts);
         }
     }
 }

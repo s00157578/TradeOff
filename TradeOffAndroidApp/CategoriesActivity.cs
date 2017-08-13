@@ -1,5 +1,6 @@
 ﻿
 using Android.App;
+using Android.Content;
 using Android.OS;
 using Android.Widget;
 using System.Collections.Generic;
@@ -14,29 +15,42 @@ namespace TradeOffAndroidApp
     public class CategoriesActivity : Activity
     {
         private ListView _categoryListView;
-        private List<CategoryModel> _categories;
-        private ICategoryRepository _categoryRepository;
-        //public CategoriesActivity(ICategoryRepository categoryRepository)
-        //{
-        //    _categoryRepository = categoryRepository;
-        //}
+        private static List<CategoryModel> _categoriesList;
+        private CategoryRepository _categoryRepository;
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            _categoryRepository = new CategoryRepository();
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.Categories);
             PopulateList();
+            SetContentView(Resource.Layout.Categories);
             FindViews();
-            _categoryListView.Adapter = new CategoryListAdapter(this, _categories);
+            _categoryListView.Adapter = new CategoryListAdapter(this, _categoriesList);
             _categoryListView.FastScrollEnabled = true;
+            HandleEvents();
+        }
+        private void HandleEvents()
+        {
+            _categoryListView.ItemClick += CategoryListView_ItemClick;
         }
         private async void PopulateList()
         {
-            IEnumerable<CategoryModel> category = await _categoryRepository.GetCategoriesAsync();
-            _categories = category.ToList();
+            if(_categoriesList == null)
+            {
+                IEnumerable<CategoryModel> category = await _categoryRepository.GetCategoriesAsync();
+                _categoriesList = category.ToList();
+            }          
         }
         private void FindViews()
         {
             _categoryListView = FindViewById<ListView>(Resource.Id.ListviewCategories);
+        }
+        private void CategoryListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        {
+            var category = _categoriesList[e.Position];
+            var intent = new Intent();
+            intent.SetClass(this, typeof(ProductListActivity));
+            intent.PutExtra("selectedCategoryId", category.Id);
+            StartActivityForResult(intent, 100);
         }
     }
 }

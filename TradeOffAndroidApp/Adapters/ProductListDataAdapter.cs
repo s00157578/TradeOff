@@ -10,14 +10,15 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using TradeOffAndroidApp.Core.Models;
+using TradeOffAndroidApp.Core;
 
 namespace TradeOffAndroidApp.Adapters
 {
-    public class CategoryListAdapter:BaseAdapter<CategoryModel>
+    public class ProductListDataAdapter : BaseAdapter<ProductModel>
     {
-        List<CategoryModel> items;
+        List<ProductModel> items;
         Activity context;
-        public CategoryListAdapter(Activity context, List<CategoryModel> items) : base()
+        public ProductListDataAdapter(Activity context, List<ProductModel> items) : base()
         {
             this.context = context;
             this.items = items;
@@ -28,7 +29,7 @@ namespace TradeOffAndroidApp.Adapters
             return position;
         }
 
-        public override CategoryModel this[int position]
+        public override ProductModel this[int position]
         {
             get
             {
@@ -51,7 +52,7 @@ namespace TradeOffAndroidApp.Adapters
                 convertView = context.LayoutInflater.Inflate(Android.Resource.Layout.SimpleListItemActivated1, null);
             }
             convertView.FindViewById<TextView>(Android.Resource.Id.Text1).SetTextColor(Android.Graphics.Color.Black);
-            convertView.FindViewById<TextView>(Android.Resource.Id.Text1).Text = item.CategoryName;
+            convertView.FindViewById<TextView>(Android.Resource.Id.Text1).Text = item.Name;
             return convertView;
         }
     }

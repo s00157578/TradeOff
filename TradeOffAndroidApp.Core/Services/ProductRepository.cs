@@ -10,7 +10,7 @@ namespace TradeOffAndroidApp.Core.Services
 {
     public class ProductRepository : IProductRepository
     {
-        private APIConnecter _apiConnecter;
+        private APIConnecter _apiConnecter = new APIConnecter();
 
         public async Task<ProductModel> AddProduct(int categoryId, ProductCreateModel product)
         {
@@ -20,10 +20,10 @@ namespace TradeOffAndroidApp.Core.Services
             string responseJson =  await _apiConnecter.PostRequest(url, httpContent);
             return JsonConvert.DeserializeObject<ProductModel>(responseJson);
         }
-        public async Task<bool> DeleteProduct(int productId)
+        public bool DeleteProduct(int productId)
         {
             string url = UrlResourceName.ResourceName + $"api/products/{productId}";
-            return await _apiConnecter.DeleteRequest(url);
+            return _apiConnecter.DeleteRequest(url);
         }
         public async Task<ProductModel> GetProduct(int productId)
         {
@@ -39,12 +39,12 @@ namespace TradeOffAndroidApp.Core.Services
             return JsonConvert.DeserializeObject<List<ProductModel>>(responseJsonString).ToList();
         }
 
-        public async Task<bool> UpdateProduct(int categoryId, int productId, ProductUpdateModel product)
+        public bool UpdateProduct(int categoryId, int productId, ProductUpdateModel product)
         {
             string url = UrlResourceName.ResourceName + $"api/products/{categoryId}/product/{productId}";
             var jsonProduct = JsonConvert.SerializeObject(product);
             var httpContent = new StringContent(jsonProduct, Encoding.UTF8, "application/json");
-            return await _apiConnecter.PatchRequest(url, httpContent);
+            return _apiConnecter.PatchRequest(url, httpContent);
         }
     }
 }

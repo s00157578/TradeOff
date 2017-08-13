@@ -8,6 +8,6 @@ namespace TradeOffAndroidApp.Core
 {
     public static class UrlResourceName
     {
-        public const string ResourceName = "http://localhost:65162/";
+        public const string ResourceName = "http://tradeoff.azurewebsites.net/";
     }
 }

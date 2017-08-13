@@ -9,15 +9,15 @@ using TradeOffAndroidApp.Core.Models;
 
 namespace TradeOffAndroidApp.Core.Services
 {
-    public class CategoryRepository : ICategoryRepository
+    public class CategoryRepository
     {
-        private APIConnecter _apiConnecter;
+        private static APIConnecter _apiConnecter = new APIConnecter();
         public async Task<IEnumerable<CategoryModel>> GetCategoriesAsync()
         {
             string getCategoriesUrl = UrlResourceName.ResourceName + "api/products/categories";
             string responseJsonString = await _apiConnecter.GetResponseJsonString(getCategoriesUrl);
-            return JsonConvert.DeserializeObject<List<CategoryModel>>(responseJsonString).ToList(); ;
-        }        
+            return JsonConvert.DeserializeObject<List<CategoryModel>>(responseJsonString).ToList();
+        }
     }
 }
  

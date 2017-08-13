@@ -23,6 +23,7 @@ namespace TradeOff.API.Services
         ProductImage GetProductImage(int productImageId);
         ProductImage GetMainImage(int productId);
         IEnumerable<ProductImage> GetMainProductImages();
+        IEnumerable<ProductImage> GetMainImagesByCategory(int categoryId);
         void setMainImageToFalse(int productId, int productImageId);
         bool ProductImageExistsByImageId(int productImageId);
         bool ProductImageExistsByProductId(int productId);

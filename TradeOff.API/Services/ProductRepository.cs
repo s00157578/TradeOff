@@ -58,6 +58,15 @@ namespace TradeOff.API.Services
             return _context.ProductImages.FirstOrDefault(p => p.ProductId == productId && p.IsMainImage);
         }
 
+        public IEnumerable<ProductImage> GetMainImagesByCategory(int categoryId)
+        {
+            var imageByCategory = from p in _context.Products
+                                  join pi in _context.ProductImages on p.Id equals pi.ProductId
+                                  where p.CategoryId == categoryId && pi.IsMainImage == true
+                                  select pi;
+            return imageByCategory;
+        }
+
         public IEnumerable<ProductImage> GetMainProductImages()
         {
             return _context.ProductImages.Where(p => p.IsMainImage == true).ToList();

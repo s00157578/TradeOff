@@ -10,7 +10,7 @@ namespace TradeOffAndroidApp.Core.Services
 {
     public class ProductImageRepository : IProductImageRepository
     {
-        private APIConnecter _apiConnecter;
+        private APIConnecter _apiConnecter = new APIConnecter();
         public async Task<ProductImageModel> AddProductImage(int productId, ProductImageCreateModel productImage)
         {
             string url = UrlResourceName.ResourceName + $"api/products/{productId}/productImage";
@@ -19,31 +19,36 @@ namespace TradeOffAndroidApp.Core.Services
             string responseJson = await _apiConnecter.PostRequest(url, httpContent);
             return JsonConvert.DeserializeObject<ProductImageModel>(responseJson);
         }
-        public async Task<bool> DeleteProductImage(int productImageId)
+        public bool DeleteProductImage(int productImageId)
         {
             string url = UrlResourceName.ResourceName + $"api/products/productImage/{productImageId}";
-            return await _apiConnecter.DeleteRequest(url);
+            return _apiConnecter.DeleteRequest(url);
         }
         public async Task<IEnumerable<ProductImageModel>> GetMainProductImages()
         {
             string url = UrlResourceName.ResourceName + $"api/products/productImage/mainImages";
             string responseJsonString = await _apiConnecter.GetResponseJsonString(url);
-            return JsonConvert.DeserializeObject<List<ProductImageModel>>(responseJsonString).ToList(); ;
+            return JsonConvert.DeserializeObject<List<ProductImageModel>>(responseJsonString).ToList(); 
         }
 
         public async Task<IEnumerable<ProductImageModel>> GetProductImages(int productId)
         {
             string url = UrlResourceName.ResourceName + $"api/products/productImage/{productId}";
             string responseJsonString = await _apiConnecter.GetResponseJsonString(url);
-            return JsonConvert.DeserializeObject<List<ProductImageModel>>(responseJsonString).ToList(); ;
+            return JsonConvert.DeserializeObject<List<ProductImageModel>>(responseJsonString).ToList();
         }
-
-        public async Task<bool> UpdateProductImage(int productId, int productImageId, ProductImageUpdateModel productImage)
+        public async Task<IEnumerable<ProductImageModel>> GetMainProductImagesByCategory(int categoryId)
+        {
+            string url = UrlResourceName.ResourceName + $"api/products/getMainImagesByCategory/{categoryId}";
+            string responseJsonString = await _apiConnecter.GetResponseJsonString(url);
+            return JsonConvert.DeserializeObject<List<ProductImageModel>>(responseJsonString).ToList();
+        }
+        public bool UpdateProductImage(int productId, int productImageId, ProductImageUpdateModel productImage)
         {
             string url = UrlResourceName.ResourceName + $"api/products/{productId}/productImage/{productImageId}";
             var jsonProduct = JsonConvert.SerializeObject(productImage);
             var httpContent = new StringContent(jsonProduct, Encoding.UTF8, "application/json");
-            return await _apiConnecter.PatchRequest(url, httpContent);
+            return _apiConnecter.PatchRequest(url, httpContent);
         }
     }
 }

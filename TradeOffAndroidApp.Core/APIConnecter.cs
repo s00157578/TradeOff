@@ -14,32 +14,37 @@ namespace TradeOffAndroidApp.Core
             string responseJsonString = null;
             using (var httpClient = new HttpClient())
             {
-                Task<HttpResponseMessage> getResponse = httpClient.GetAsync(url);
-                HttpResponseMessage response = await getResponse;
-                responseJsonString = await response.Content.ReadAsStringAsync();
+                try
+                {
+                    HttpResponseMessage response = httpClient.GetAsync(url).Result;
+                    responseJsonString = await response.Content.ReadAsStringAsync();
+                }
+                catch(Exception e)
+                {
+                    throw e;
+                }
+               
             }
             return responseJsonString;
         }
-        public async Task<bool> DeleteRequest(string url)
+        public bool DeleteRequest(string url)
         {
             using (var httpClient = new HttpClient())
             {
-                Task<HttpResponseMessage> getResponse = httpClient.DeleteAsync(url);
-                HttpResponseMessage response = await getResponse;
+                HttpResponseMessage response = httpClient.DeleteAsync(url).Result;
                 return response.IsSuccessStatusCode;
-            }            
+            }
         }
         public async Task<string> PostRequest(string url, HttpContent content)
         {
             using (var httpClient = new HttpClient())
             {
-                Task<HttpResponseMessage> getResponse = httpClient.PostAsync(url, content);
-                HttpResponseMessage response = await getResponse;
+                HttpResponseMessage response = httpClient.PostAsync(url, content).Result;
                 string responseJsonString = await response.Content.ReadAsStringAsync();
                 return responseJsonString;
             }
         }
-        public async Task<bool> PatchRequest(string url, HttpContent content)
+        public bool PatchRequest(string url, HttpContent content)
         {
             var patch = new HttpMethod("PATCH");
             var request = new HttpRequestMessage(patch, url)
@@ -48,8 +53,7 @@ namespace TradeOffAndroidApp.Core
             };
             using (var httpClient = new HttpClient())
             {
-                Task<HttpResponseMessage> getResponse = httpClient.SendAsync(request);
-                HttpResponseMessage response = await getResponse;
+                HttpResponseMessage response = httpClient.SendAsync(request).Result;
                 return response.IsSuccessStatusCode;
             }
         }

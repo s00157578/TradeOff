@@ -44,6 +44,15 @@ namespace TradeOff.API.Controllers
             var imageResult = Mapper.Map<IEnumerable<ProductImageModel>>(imageEntities);
             return Ok(imageResult);
         }
+        [HttpGet("getMainImagesByCategory/{categoryId}")]
+        public IActionResult GetMainImagesByCategory(int categoryId)
+        {
+            var imageEntities = _productRepository.GetMainImagesByCategory(categoryId);
+            if (imageEntities == null)
+                return NotFound();
+            var imageResult = Mapper.Map<IEnumerable<ProductImageModel>>(imageEntities);
+            return Ok(imageResult);
+        }
         [HttpGet("productimage/{id}")]
         public IActionResult GetProductImage(int id)
         {
