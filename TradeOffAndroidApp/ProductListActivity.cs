@@ -20,6 +20,7 @@ namespace TradeOffAndroidApp
     {
         private ProductRepository _productRepository;
         private ProductImageRepository _productImageRepository;
+        private List<ProductImageModel> _imageList;
         private List<ProductModel> _productList;
         private ListView _productListView;
         protected override void OnCreate(Bundle savedInstanceState)
@@ -31,7 +32,7 @@ namespace TradeOffAndroidApp
             PopulateList(SelectedCategoryId);
             SetContentView(Resource.Layout.ProductsList);
             FindViews();
-            _productListView.Adapter = new ProductListDataAdapter(this, _productList);
+            _productListView.Adapter = new ProductListDataAdapter(this, _productList, _imageList);
             _productListView.FastScrollEnabled = true;
             // Create your application here
         }
@@ -42,9 +43,11 @@ namespace TradeOffAndroidApp
                 var products = await _productRepository.GetProductsByCategory(id);
                 _productList = products.ToList();
             }
-        }
-        private async void PopulateImageList()
-        {
+            if(_imageList == null)
+            {
+                var images = await _productImageRepository.GetMainProductImagesByCategory(id);
+                _imageList = images.ToList();
+            }
         }
         private void FindViews()
         {
