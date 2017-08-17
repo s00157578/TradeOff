@@ -24,7 +24,8 @@ namespace TradeOff.API.Models
         [Required]
         public decimal Price { get; set; }
         [Required]
-        public int UserId { get; set; }        
+        public int UserId { get; set; }   
+        public int CategoryId { get; set; }
 
     }
 }

@@ -91,11 +91,18 @@ namespace TradeOffAndroidApp
         }
         private void btnEdit_Click(object sender, EventArgs e)
         {
-
-        }
+            var intent = new Intent();
+            intent.SetClass(this, typeof(EditProductActivity));
+            intent.PutExtra("selectedProductId", _product.Id);
+            StartActivityForResult(intent, 100);
+        } 
         private void btnDelete_Click(object sender, EventArgs e)
         {
             _productRepository.DeleteProduct(_product.Id);
+            var intent = new Intent();
+            intent.SetClass(this, typeof(ProductListActivity));
+            intent.PutExtra("selectedCategoryId", _product.CategoryId);
+            StartActivityForResult(intent, 100);
             Finish();
         }
         private void btnLocation_Click (object sender, EventArgs e)
