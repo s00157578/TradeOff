@@ -52,16 +52,14 @@ namespace TradeOffAndroidApp.Adapters
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
             var item = items[position];
-            var image = _images.FirstOrDefault(i => i.Id == item.Id);
+            var image = _images.FirstOrDefault(i => i.ProductId == item.Id);
             var imageBitmap = _imageConversion.ByteArrayToBitmap(image.Image);
             if (convertView == null)
             {
                 convertView = context.LayoutInflater.Inflate(Android.Resource.Layout.ActivityListItem, null);
             }
             convertView.FindViewById<TextView>(Android.Resource.Id.Text1).SetTextColor(Android.Graphics.Color.Black);
-            convertView.FindViewById<TextView>(Android.Resource.Id.Text2).SetTextColor(Android.Graphics.Color.Black);
             convertView.FindViewById<TextView>(Android.Resource.Id.Text1).Text = item.Name;
-            convertView.FindViewById<TextView>(Android.Resource.Id.Text2).Text = item.ShortDescription;
             convertView.FindViewById<ImageView>(Android.Resource.Id.Icon).SetImageBitmap(imageBitmap);
             return convertView;
         }

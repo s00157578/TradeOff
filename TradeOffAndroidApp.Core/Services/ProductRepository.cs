@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TradeOffAndroidApp.Core.Services
 {
-    public class ProductRepository : IProductRepository
+    public class ProductRepository
     {
         private APIConnecter _apiConnecter = new APIConnecter();
 

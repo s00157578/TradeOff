@@ -12,12 +12,28 @@
         android:layout_height="match_parent"
         android:paddingLeft="20dp"
         android:paddingRight="20dp">
-        <ImageButton
-            android:src="@drawable/addimageicon"
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:id="@+id/Addimage"
-            android:layout_gravity="center_horizontal" />
+            android:id="@+id/imageViewProduct"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="center" />
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp">
+            <Button
+                android:text="Add Image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnImage"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="35dp"
+                android:background="@android:color/holo_blue_dark" />
+        </RelativeLayout>
         <TextView
             android:text="Category"
             android:layout_width="match_parent"
@@ -92,7 +108,7 @@
             android:inputType="numberDecimal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/txtEditroductName"
+            android:id="@+id/txtEditPrice"
             android:paddingTop="20dp"
             android:textSize="10dp"
             android:textColor="@android:color/black"
@@ -122,5 +138,14 @@
                 android:layout_marginTop="35dp"
                 android:background="@android:color/holo_green_light" />
         </RelativeLayout>
+        <TextView
+            android:text=""
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtViewWarning"
+            android:paddingTop="5dp"
+            android:textSize="10dp"
+            android:textColor="@android:color/holo_red_dark"
+            android:layout_marginBottom="5dp" />
     </LinearLayout>
 </ScrollView>

@@ -34,6 +34,7 @@ namespace TradeOffAndroidApp
             FindViews();
             _productListView.Adapter = new ProductListDataAdapter(this, _productList, _imageList);
             _productListView.FastScrollEnabled = true;
+            HandleEvents();
             // Create your application here
         }
         private async void PopulateList(int id)
@@ -52,6 +53,18 @@ namespace TradeOffAndroidApp
         private void FindViews()
         {
             _productListView = FindViewById<ListView>(Resource.Id.ListviewProducts);
+        }
+        private void HandleEvents()
+        {
+            _productListView.ItemClick += ProductListView_ItemClick;
+        }
+        private void ProductListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        {
+            var product = _productList[e.Position];
+            var intent = new Intent();
+            intent.SetClass(this, typeof(ProductViewActivity));
+            intent.PutExtra("selectedProductId", product.Id);
+            StartActivityForResult(intent, 100);
         }
     }
 }

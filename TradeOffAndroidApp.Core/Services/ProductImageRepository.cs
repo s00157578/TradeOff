@@ -8,12 +8,13 @@ using System.Threading.Tasks;
 
 namespace TradeOffAndroidApp.Core.Services
 {
-    public class ProductImageRepository : IProductImageRepository
+    public class ProductImageRepository
     {
         private APIConnecter _apiConnecter = new APIConnecter();
         public async Task<ProductImageModel> AddProductImage(int productId, ProductImageCreateModel productImage)
         {
             string url = UrlResourceName.ResourceName + $"api/products/{productId}/productImage";
+
             var jsonProduct = JsonConvert.SerializeObject(productImage);
             var httpContent = new StringContent(jsonProduct, Encoding.UTF8, "application/json");
             string responseJson = await _apiConnecter.PostRequest(url, httpContent);
@@ -33,7 +34,7 @@ namespace TradeOffAndroidApp.Core.Services
 
         public async Task<IEnumerable<ProductImageModel>> GetProductImages(int productId)
         {
-            string url = UrlResourceName.ResourceName + $"api/products/productImage/{productId}";
+            string url = UrlResourceName.ResourceName + $"api/products/{productId}/productImages";
             string responseJsonString = await _apiConnecter.GetResponseJsonString(url);
             return JsonConvert.DeserializeObject<List<ProductImageModel>>(responseJsonString).ToList();
         }

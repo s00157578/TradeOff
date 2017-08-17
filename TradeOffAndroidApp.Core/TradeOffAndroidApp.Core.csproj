@@ -45,9 +45,6 @@
     <Compile Include="Models\ProductUpdateModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CategoryRepository.cs" />
-    <Compile Include="Services\ICategoryRepository.cs" />
-    <Compile Include="Services\IProductImageRepository.cs" />
-    <Compile Include="Services\IProductRepository.cs" />
     <Compile Include="Services\ProductImageRepository.cs" />
     <Compile Include="Services\ProductRepository.cs" />
     <Compile Include="UrlResourceName.cs" />

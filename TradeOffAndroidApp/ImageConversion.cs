@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using System.IO;
 using Android.Graphics;
+using Android.Gms.Common.Images;
 
 namespace TradeOffAndroidApp
 {
@@ -29,6 +30,27 @@ namespace TradeOffAndroidApp
         public Bitmap ByteArrayToBitmap(byte[] byteArray)
         {
             return BitmapFactory.DecodeByteArray(byteArray, 0, byteArray.Length);
+        }
+        //loads a bitmap from a file
+        public Bitmap LoadBitmap( string fileName)
+        {
+            int maxWidth;
+            int maxHeight;
+            var options = new BitmapFactory.Options()
+            {
+                InJustDecodeBounds = false,
+                InPurgeable = true,
+            };
+            var image = BitmapFactory.DecodeFile(fileName, options);     
+           if (image != null)
+           {
+                var sourceSize = new Size((int)image.GetBitmapInfo().Height, (int)image.GetBitmapInfo().Width);
+                maxWidth = sourceSize.Width / 3;
+                maxHeight = sourceSize.Height / 3;
+                var bitmapScaled = Bitmap.CreateScaledBitmap(image, maxWidth, maxHeight, true);
+                return bitmapScaled;
+           }
+            return null;
         }
 
     }
