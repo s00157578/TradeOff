@@ -44,16 +44,16 @@ namespace TradeOffAndroidApp.Core
                 return responseJsonString;
             }
         }
-        public bool PatchRequest(string url, HttpContent content)
+        public bool PUtRequest(string url, HttpContent content)
         {
-            var patch = new HttpMethod("PATCH");
-            var request = new HttpRequestMessage(patch, url)
-            {
-                Content = content
-            };
+            //var patch = new HttpMethod("PATCH");
+            //var request = new HttpRequestMessage(patch, url)
+            //{
+            //    Content = content
+            //};
             using (var httpClient = new HttpClient())
             {
-                HttpResponseMessage response = httpClient.SendAsync(request).Result;
+                HttpResponseMessage response = httpClient.PutAsync(url,content).Result;
                 return response.IsSuccessStatusCode;
             }
         }

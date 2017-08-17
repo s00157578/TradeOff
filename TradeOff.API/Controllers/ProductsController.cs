@@ -123,9 +123,9 @@ namespace TradeOff.API.Controllers
             return CreatedAtRoute("GetProductImage", new { id = createdImage.Id }, createdImage);
         }
 
-        [HttpPatch("{categoryId}/product/{id}")]
+        [HttpPut("{categoryId}/product/{id}")]
         public IActionResult UpdateProduct(int id,
-            [FromBody] JsonPatchDocument<ProductUpdateModel> patchDoc)
+            [FromBody] ProductUpdateModel patchDoc)
         {
             if (patchDoc == null)
             {
@@ -140,14 +140,7 @@ namespace TradeOff.API.Controllers
             {
                 return NotFound();
             }
-            var productToPatch = Mapper.Map<ProductUpdateModel>(productEntity);
-            patchDoc.ApplyTo(productToPatch, ModelState);
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-            TryValidateModel(productToPatch);
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-            Mapper.Map(productToPatch, productEntity);
+            Mapper.Map(patchDoc, productEntity);
             if (!_productRepository.Save())
                 return StatusCode(500, "A problem happened while handling your request");
             return NoContent();

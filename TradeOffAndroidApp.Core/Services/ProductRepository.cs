@@ -44,7 +44,7 @@ namespace TradeOffAndroidApp.Core.Services
             string url = UrlResourceName.ResourceName + $"api/products/{categoryId}/product/{productId}";
             var jsonProduct = JsonConvert.SerializeObject(product);
             var httpContent = new StringContent(jsonProduct, Encoding.UTF8, "application/json");
-            return _apiConnecter.PatchRequest(url, httpContent);
+            return _apiConnecter.PUtRequest(url, httpContent);
         }
     }
 }

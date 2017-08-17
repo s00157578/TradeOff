@@ -23,11 +23,11 @@ namespace TradeOffAndroidApp
         private EditText _editPrice;
         private TextView _textViewWarning;
         private Button _btnSubmit;
-        private ImageConversion _imageConverter;
         private ProductRepository _productRepository;
         ProductModel product;
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            _productRepository = new ProductRepository();
             base.OnCreate(savedInstanceState);           
             var selectedProductId = Intent.Extras.GetInt("selectedProductId");
             GetProduct(selectedProductId);
