@@ -74,6 +74,7 @@ namespace TradeOffAndroidApp
                     ProductUpdateModel productToUpdate = new ProductUpdateModel()
                     {
                         Name = _editName.Text,
+                        Location = product.Location,
                         ShortDescription = _editShortDescription.Text,
                         FullDescription = _editFullDescription.Text,
                         Price = decimal.Parse(_editPrice.Text),
@@ -82,7 +83,7 @@ namespace TradeOffAndroidApp
                     bool isUpdated = _productRepository.UpdateProduct(product.CategoryId,product.Id, productToUpdate);
                 if (isUpdated)
                 {
-                    GoToProductView(product.Id);
+                    GoToProductView(product.Id);                   
                 }
                 else
                     _textViewWarning.Text = "there was a problem updating the product";
@@ -124,6 +125,7 @@ namespace TradeOffAndroidApp
             intent.SetClass(this, typeof(ProductViewActivity));
             intent.PutExtra("selectedProductId", productId);
             StartActivityForResult(intent, 100);
+            Finish();
         }
     }
 }
