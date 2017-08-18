@@ -37,7 +37,7 @@ namespace TradeOffAndroidApp.Core.Services
         }
         public async Task<string> GetUserId()
         {
-            string url = UrlResourceName.ResourceName + "api/auth/UserId";
+            string url = UrlResourceName.ResourceName + "api/auth/userId";
             string responseJsonString = await _apiConnecter.GetResponseJsonString(url);
             return JsonConvert.DeserializeObject<string>(responseJsonString);
         }

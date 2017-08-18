@@ -1,6 +1,7 @@
 ﻿using JWT;
 using JWT.Algorithms;
 using JWT.Serializers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
@@ -20,7 +21,7 @@ namespace TradeOff.API.Controllers
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly JWTSettings _options;
-        public AuthController(  UserManager<User> userManager, SignInManager<User> signInManager, IOptions<JWTSettings> optionsAccessor)
+        public AuthController(UserManager<User> userManager, SignInManager<User> signInManager, IOptions<JWTSettings> optionsAccessor)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -123,5 +124,16 @@ namespace TradeOff.API.Controllers
             TimeSpan diff = date.ToUniversalTime() - origin;
             return Math.Floor(diff.TotalSeconds);
         }
+        [Authorize]
+        [HttpGet("userId")]
+        public async Task<IActionResult> GetUserId()
+        {
+            var user = await GetCurrentUserAsync();
+            var userId = user?.Id;
+            if(userId !=null)
+                return Ok(userId);
+            return NotFound();
+        }
+        private Task<User> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
     }
 }
