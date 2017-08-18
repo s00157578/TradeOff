@@ -26,29 +26,29 @@ namespace TradeOff.API
                     UserName = "kVesey",
                     Email = "S00157578@mail.itsligo.ie"
                 };
-                addIdentity(user, userStore);
+                AddIdentity(user, userStore);
                 user = new User()
                 {
                     UserName = "jBlogg",
                     Email = "noMail@mail.itsligo.ie"
                 };
-                addIdentity(user, userStore);
+                AddIdentity(user, userStore);
                 user = new User()
                 {
                     UserName = "sBlogg",
                     Email = "stillNoMail@mail.itsligo.ie"
                 };
-                addIdentity(user, userStore);
+                AddIdentity(user, userStore);
                 user = new User()
                 {
                     UserName = "kvesey2",
                     Email = "kevinvesey7@gmail.com"
                 };
-                addIdentity(user, userStore);
+                AddIdentity(user, userStore);
                 _context.SaveChanges();
             }
         }
-        private void addIdentity(User user, UserStore<User> userStore)
+        private void AddIdentity(User user, UserStore<User> userStore)
         {
             var password = new PasswordHasher<User>();
             var hashed = password.HashPassword(user, "password");

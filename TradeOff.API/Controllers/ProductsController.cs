@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using TradeOff.API.Models;
 using TradeOff.API.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TradeOff.API.Controllers
 {
@@ -95,6 +96,7 @@ namespace TradeOff.API.Controllers
         }
 
         [HttpPost("{categoryId}/product", Name = "GetProduct")]
+        [Authorize]
         public IActionResult CreateProduct(int categoryId, [FromBody] ProductCreateModel product)
         {
             if (product == null)
@@ -109,6 +111,7 @@ namespace TradeOff.API.Controllers
             return CreatedAtRoute("GetProduct", new { id = createdProduct.Id }, createdProduct);
         }
         [HttpPost("{productId}/productImage", Name = "GetProductImage")]
+        [Authorize]
         public IActionResult CreateProductImage(int productId, [FromBody] ProductImageCreateModel productImage)
         {
             if (productImage == null)
@@ -124,6 +127,7 @@ namespace TradeOff.API.Controllers
         }
 
         [HttpPut("{categoryId}/product/{id}")]
+        [Authorize]
         public IActionResult UpdateProduct(int id,
             [FromBody] ProductUpdateModel patchDoc)
         {
@@ -146,6 +150,7 @@ namespace TradeOff.API.Controllers
             return NoContent();
         }
         [HttpPatch("{productId}/productImage/{id}")]
+        [Authorize]
         public IActionResult UpdateProductImage(int id,
             [FromBody] JsonPatchDocument<ProductImageUpdateModel> patchDoc)
         {
@@ -177,6 +182,7 @@ namespace TradeOff.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public IActionResult DeleteProduct(int id)
         {
             if (!_productRepository.ProductExists(id))
@@ -191,6 +197,7 @@ namespace TradeOff.API.Controllers
             return NoContent();
         }
         [HttpDelete("productImage/{id}")]
+        [Authorize]
         public IActionResult DeleteProductImage(int id)
         {
             if (!_productRepository.ProductImageExistsByImageId(id))

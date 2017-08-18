@@ -26,11 +26,27 @@
         android:textSize="10dp"
         android:textColor="@android:color/black"
         android:background="@android:drawable/dialog_holo_light_frame" />
+  <TextView
+        android:text="UserName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtViewUserName"
+        android:paddingTop="20dp"
+        android:textSize="10dp"
+        android:textColor="@android:color/black" />
+  <EditText
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/txtEditUserName"
+      android:paddingTop="20dp"
+      android:textSize="10dp"
+      android:textColor="@android:color/black"
+      android:background="@android:drawable/dialog_holo_light_frame" />
     <TextView
         android:text="Password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtViewPrice"
+        android:id="@+id/txtViewPassword"
         android:paddingTop="20dp"
         android:textSize="10dp"
         android:textColor="@android:color/black" />
@@ -38,7 +54,7 @@
         android:inputType="textPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtEditroductName"
+        android:id="@+id/txtEditPassword"
         android:paddingTop="20dp"
         android:textSize="10dp"
         android:textColor="@android:color/black"
@@ -50,10 +66,10 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp">
         <Button
-            android:text="Create Account"
+            android:text="Back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btnCreateAccount"
+            android:id="@+id/btnBack"
             android:layout_alignParentLeft="true"
             android:layout_centerInParent="true"
             android:layout_marginTop="35dp"
@@ -61,10 +77,10 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp" />
         <Button
-            android:text="Log In"
+            android:text="Create Account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btnLogin"
+            android:id="@+id/btnCreate"
             android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
             android:layout_marginTop="35dp"
@@ -72,4 +88,13 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp" />
     </RelativeLayout>
+   <TextView
+            android:text=""
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtViewWarning"
+            android:paddingTop="5dp"
+            android:textSize="10dp"
+            android:textColor="@android:color/holo_red_dark"
+            android:layout_marginBottom="5dp" />
 </LinearLayout>

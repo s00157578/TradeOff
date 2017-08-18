@@ -96,6 +96,7 @@
     <Compile Include="Adapters\ProductListDataAdapter.cs" />
     <Compile Include="AddProductActivity.cs" />
     <Compile Include="CategoriesActivity.cs" />
+    <Compile Include="CreateAccountActivity.cs" />
     <Compile Include="EditProductActivity.cs" />
     <Compile Include="HomeActivity.cs" />
     <Compile Include="ImageConversion.cs" />

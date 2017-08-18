@@ -37,6 +37,8 @@
   <ItemGroup>
     <Compile Include="APIConnecter.cs" />
     <Compile Include="Models\CategoryModel.cs" />
+    <Compile Include="Models\CreateAccountModel.cs" />
+    <Compile Include="Models\CredentialModel.cs" />
     <Compile Include="Models\ProductCreateModel.cs" />
     <Compile Include="Models\ProductImageCreateModel.cs" />
     <Compile Include="Models\ProductImageModel.cs" />
@@ -45,6 +47,7 @@
     <Compile Include="Models\ProductUpdateModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CategoryRepository.cs" />
+    <Compile Include="Services\CredentialRepository.cs" />
     <Compile Include="Services\ProductImageRepository.cs" />
     <Compile Include="Services\ProductRepository.cs" />
     <Compile Include="UrlResourceName.cs" />
