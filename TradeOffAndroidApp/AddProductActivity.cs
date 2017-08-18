@@ -39,24 +39,41 @@ namespace TradeOffAndroidApp
         private string coords;
         private int _categoryId;
         private Bitmap _productImage;
+        private string _userId;
         LocationManager locMgr;
+        private CredentialRepository _credentialRepository;
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            _categoryRepository = new CategoryRepository();
-            _productImageRepository = new ProductImageRepository();
-            _productRepository = new ProductRepository();
-            locMgr = GetSystemService(Context.LocationService) as LocationManager;
+            _credentialRepository = new CredentialRepository();
+            GetUserId();
             base.OnCreate(savedInstanceState);
-            //prevents a uri exception when creating a directory when taking an image
-            StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
-            builder.DetectFileUriExposure();
-            StrictMode.SetVmPolicy(builder.Build());
-            SetContentView(Resource.Layout.AddProductView);
-            GetViews();
-            PopulateLists();
-            ArrayAdapter adapter = new ArrayAdapter(this, Resource.Layout.TextViewItem, _categoryList.Select(x => x.CategoryName).ToArray()); 
-            _dropDownCategories.Adapter = adapter;
-            HandleEvents();                    
+            if (string.IsNullOrEmpty(_userId))
+            {
+                GoToLogin();
+                Finish();
+            }
+            else
+            {
+                _categoryRepository = new CategoryRepository();
+                _productImageRepository = new ProductImageRepository();
+                _productRepository = new ProductRepository();
+                locMgr = GetSystemService(Context.LocationService) as LocationManager;              
+                //prevents a uri exception when creating a directory when taking an image
+                StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+                builder.DetectFileUriExposure();
+                StrictMode.SetVmPolicy(builder.Build());
+                SetContentView(Resource.Layout.AddProductView);
+                GetViews();
+                PopulateLists();
+                ArrayAdapter adapter = new ArrayAdapter(this, Resource.Layout.TextViewItem, _categoryList.Select(x => x.CategoryName).ToArray());
+                _dropDownCategories.Adapter = adapter;
+                HandleEvents();
+            }
+                              
+        }
+        private async void GetUserId()
+        {
+            _userId = await _credentialRepository.GetUserId();
         }
         //on return from camera app read file from the specified path and set the imageview to the image, (based off xamarin tutorial)
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
@@ -288,6 +305,12 @@ namespace TradeOffAndroidApp
         public void OnStatusChanged(string provider, [GeneratedEnum] Availability status, Bundle extras)
         {
             
+        }
+        private void GoToLogin()
+        {
+            var intent = new Intent();
+            intent.SetClass(this, typeof(LoginActivity));
+            StartActivityForResult(intent, 100);
         }
     }
     //class for the image location

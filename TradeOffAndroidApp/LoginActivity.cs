@@ -18,7 +18,7 @@ namespace TradeOffAndroidApp
     public class LoginActivity : Activity
     {
         private TextView _textViewWarning;
-        private EditText _textUserName;
+        private EditText _textEmail;
         private EditText _textPassword;
         private Button _btnLogin;
         private Button _btnCreateAccount;
@@ -34,8 +34,8 @@ namespace TradeOffAndroidApp
         }
         private void GetViews()
         {
-            _textViewWarning = FindViewById<EditText>(Resource.Id.txtViewWarning);
-            _textUserName = FindViewById<EditText>(Resource.Id.txtEditUserName);
+            _textViewWarning = FindViewById<TextView>(Resource.Id.txtViewWarning);
+            _textEmail = FindViewById<EditText>(Resource.Id.txtEditEmail);
             _textPassword = FindViewById<EditText>(Resource.Id.txtEditPassword);
             _btnLogin = FindViewById<Button>(Resource.Id.btnLogin);
             _btnCreateAccount = FindViewById<Button>(Resource.Id.btnCreateAccount);
@@ -58,7 +58,7 @@ namespace TradeOffAndroidApp
             {
                 CredentialModel account = new CredentialModel()
                 {
-                    UserName = _textPassword.Text,
+                    Email = _textEmail.Text,
                     Password = _textPassword.Text
                 };
                 bool isCreated = _credentialRepository.Login(account);
@@ -75,7 +75,7 @@ namespace TradeOffAndroidApp
         }
         private bool IsInputValid()
         {
-            if (string.IsNullOrEmpty(_textUserName.Text))
+            if (string.IsNullOrEmpty(_textEmail.Text))
                 return false;
             if (string.IsNullOrEmpty(_textPassword.Text))
                 return false;

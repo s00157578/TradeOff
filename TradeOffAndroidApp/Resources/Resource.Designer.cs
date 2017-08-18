@@ -265,8 +265,8 @@ namespace TradeOffAndroidApp
 			// aapt resource value: 0x7f07001d
 			public const int ListviewCategories = 2131165213;
 			
-			// aapt resource value: 0x7f070034
-			public const int ListviewProducts = 2131165236;
+			// aapt resource value: 0x7f070031
+			public const int ListviewProducts = 2131165233;
 			
 			// aapt resource value: 0x7f07001e
 			public const int TradeOffIcon = 2131165214;
@@ -280,47 +280,47 @@ namespace TradeOffAndroidApp
 			// aapt resource value: 0x7f07000a
 			public const int auto = 2131165194;
 			
-			// aapt resource value: 0x7f070025
-			public const int btnBack = 2131165221;
+			// aapt resource value: 0x7f070023
+			public const int btnBack = 2131165219;
 			
 			// aapt resource value: 0x7f07001a
 			public const int btnCancel = 2131165210;
 			
-			// aapt resource value: 0x7f070027
-			public const int btnCategories = 2131165223;
+			// aapt resource value: 0x7f070025
+			public const int btnCategories = 2131165221;
 			
-			// aapt resource value: 0x7f070026
-			public const int btnCreate = 2131165222;
-			
-			// aapt resource value: 0x7f070032
-			public const int btnCreateAccount = 2131165234;
-			
-			// aapt resource value: 0x7f07002e
-			public const int btnDelete = 2131165230;
+			// aapt resource value: 0x7f070024
+			public const int btnCreate = 2131165220;
 			
 			// aapt resource value: 0x7f07002f
-			public const int btnEdit = 2131165231;
+			public const int btnCreateAccount = 2131165231;
 			
-			// aapt resource value: 0x7f070030
-			public const int btnEmail = 2131165232;
+			// aapt resource value: 0x7f07002c
+			public const int btnDelete = 2131165228;
+			
+			// aapt resource value: 0x7f07002d
+			public const int btnEdit = 2131165229;
+			
+			// aapt resource value: 0x7f07002e
+			public const int btnEmail = 2131165230;
 			
 			// aapt resource value: 0x7f07000f
 			public const int btnImage = 2131165199;
 			
-			// aapt resource value: 0x7f07002d
-			public const int btnLocation = 2131165229;
-			
-			// aapt resource value: 0x7f07002a
-			public const int btnLogin = 2131165226;
+			// aapt resource value: 0x7f07002b
+			public const int btnLocation = 2131165227;
 			
 			// aapt resource value: 0x7f070028
-			public const int btnSellProduct = 2131165224;
+			public const int btnLogin = 2131165224;
+			
+			// aapt resource value: 0x7f070026
+			public const int btnSellProduct = 2131165222;
 			
 			// aapt resource value: 0x7f07001b
 			public const int btnSubmit = 2131165211;
 			
-			// aapt resource value: 0x7f070029
-			public const int btnYourProducts = 2131165225;
+			// aapt resource value: 0x7f070027
+			public const int btnYourProducts = 2131165223;
 			
 			// aapt resource value: 0x7f07000b
 			public const int dark = 2131165195;
@@ -334,8 +334,8 @@ namespace TradeOffAndroidApp
 			// aapt resource value: 0x7f070007
 			public const int icon_only = 2131165191;
 			
-			// aapt resource value: 0x7f07002b
-			public const int imageProduct = 2131165227;
+			// aapt resource value: 0x7f070029
+			public const int imageProduct = 2131165225;
 			
 			// aapt resource value: 0x7f07000e
 			public const int imageViewProduct = 2131165198;
@@ -361,11 +361,11 @@ namespace TradeOffAndroidApp
 			// aapt resource value: 0x7f070004
 			public const int terrain = 2131165188;
 			
-			// aapt resource value: 0x7f070033
-			public const int textCategory = 2131165235;
+			// aapt resource value: 0x7f070030
+			public const int textCategory = 2131165232;
 			
-			// aapt resource value: 0x7f070035
-			public const int textItem = 2131165237;
+			// aapt resource value: 0x7f070032
+			public const int textItem = 2131165234;
 			
 			// aapt resource value: 0x7f070020
 			public const int txtEditEmail = 2131165216;
@@ -376,20 +376,14 @@ namespace TradeOffAndroidApp
 			// aapt resource value: 0x7f070013
 			public const int txtEditName = 2131165203;
 			
-			// aapt resource value: 0x7f070024
-			public const int txtEditPassword = 2131165220;
+			// aapt resource value: 0x7f070022
+			public const int txtEditPassword = 2131165218;
 			
 			// aapt resource value: 0x7f070019
 			public const int txtEditPrice = 2131165209;
 			
 			// aapt resource value: 0x7f070015
 			public const int txtEditShortDescription = 2131165205;
-			
-			// aapt resource value: 0x7f070022
-			public const int txtEditUserName = 2131165218;
-			
-			// aapt resource value: 0x7f070031
-			public const int txtEditroductName = 2131165233;
 			
 			// aapt resource value: 0x7f070010
 			public const int txtViewCategories = 2131165200;
@@ -403,20 +397,17 @@ namespace TradeOffAndroidApp
 			// aapt resource value: 0x7f070012
 			public const int txtViewName = 2131165202;
 			
-			// aapt resource value: 0x7f070023
-			public const int txtViewPassword = 2131165219;
+			// aapt resource value: 0x7f070021
+			public const int txtViewPassword = 2131165217;
 			
 			// aapt resource value: 0x7f070018
 			public const int txtViewPrice = 2131165208;
 			
-			// aapt resource value: 0x7f07002c
-			public const int txtViewProductName = 2131165228;
+			// aapt resource value: 0x7f07002a
+			public const int txtViewProductName = 2131165226;
 			
 			// aapt resource value: 0x7f070014
 			public const int txtViewShortDescription = 2131165204;
-			
-			// aapt resource value: 0x7f070021
-			public const int txtViewUserName = 2131165217;
 			
 			// aapt resource value: 0x7f07001c
 			public const int txtViewWarning = 2131165212;

@@ -37,7 +37,6 @@
   <ItemGroup>
     <Compile Include="APIConnecter.cs" />
     <Compile Include="Models\CategoryModel.cs" />
-    <Compile Include="Models\CreateAccountModel.cs" />
     <Compile Include="Models\CredentialModel.cs" />
     <Compile Include="Models\ProductCreateModel.cs" />
     <Compile Include="Models\ProductImageCreateModel.cs" />

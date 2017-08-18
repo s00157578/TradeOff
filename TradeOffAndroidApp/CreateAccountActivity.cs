@@ -18,7 +18,6 @@ namespace TradeOffAndroidApp
     public class CreateAccountActivity : Activity
     {
         private TextView _textViewWarning;
-        private EditText _textUserName;
         private EditText _textPassword;
         private EditText _textEmail;
         private Button _btnCreate;
@@ -36,8 +35,7 @@ namespace TradeOffAndroidApp
         }
         private void GetViews()
         {
-            _textViewWarning = FindViewById<EditText>(Resource.Id.txtViewWarning);
-            _textUserName = FindViewById<EditText>(Resource.Id.txtEditUserName);
+            _textViewWarning = FindViewById<TextView>(Resource.Id.txtViewWarning);
             _textPassword = FindViewById<EditText>(Resource.Id.txtEditPassword);
             _textEmail = FindViewById<EditText>(Resource.Id.txtEditEmail);
             _btnCreate = FindViewById<Button>(Resource.Id.btnCreate);
@@ -54,10 +52,9 @@ namespace TradeOffAndroidApp
             bool isValid = IsInputValid();
             if (isValid)
             {
-                CreateAccountModel account = new CreateAccountModel()
+                CredentialModel account = new CredentialModel()
                 {
                     Email = _textEmail.Text,
-                    UserName = _textPassword.Text,
                     Password = _textPassword.Text
                 };
                 bool isCreated = _credentialRepository.CreateAccount(account);
@@ -79,18 +76,11 @@ namespace TradeOffAndroidApp
         }
         private bool IsInputValid()
         {
-            if (string.IsNullOrEmpty(_textUserName.Text))
-            {
-                _textViewWarning.Text = "username is required";
-                return false;              
-            }
-                return false;
             if (string.IsNullOrEmpty(_textEmail.Text))
             {
                 _textViewWarning.Text = "email is required";
                 return false;
             }
-                return false;
             if (string.IsNullOrEmpty(_textPassword.Text))
             {
                 _textViewWarning.Text = "password is required";

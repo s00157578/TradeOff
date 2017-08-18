@@ -26,22 +26,6 @@
         android:textSize="10dp"
         android:textColor="@android:color/black"
         android:background="@android:drawable/dialog_holo_light_frame" />
-  <TextView
-        android:text="UserName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtViewUserName"
-        android:paddingTop="20dp"
-        android:textSize="10dp"
-        android:textColor="@android:color/black" />
-  <EditText
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:id="@+id/txtEditUserName"
-      android:paddingTop="20dp"
-      android:textSize="10dp"
-      android:textColor="@android:color/black"
-      android:background="@android:drawable/dialog_holo_light_frame" />
     <TextView
         android:text="Password"
         android:layout_width="match_parent"

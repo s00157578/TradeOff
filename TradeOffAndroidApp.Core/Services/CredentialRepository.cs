@@ -12,9 +12,9 @@ namespace TradeOffAndroidApp.Core.Services
     public class CredentialRepository
     {
         private static APIConnecter _apiConnecter = new APIConnecter();
-        public bool CreateAccount( CreateAccountModel account)
+        public bool CreateAccount(CredentialModel account)
         {
-            string url = UrlResourceName.ResourceName + $"api/auth/createAccount";
+            string url = UrlResourceName.ResourceName + $"api/auth/register";
             var jsonProduct = JsonConvert.SerializeObject(account);
             var httpContent = new StringContent(jsonProduct, Encoding.UTF8, "application/json");
             return SendPostRequest(url, httpContent);
@@ -34,6 +34,12 @@ namespace TradeOffAndroidApp.Core.Services
                 HttpResponseMessage response = httpClient.PostAsync(url, httpContent).Result;
                 return response.IsSuccessStatusCode;
             }
+        }
+        public async Task<string> GetUserId()
+        {
+            string url = UrlResourceName.ResourceName + "api/auth/UserId";
+            string responseJsonString = await _apiConnecter.GetResponseJsonString(url);
+            return JsonConvert.DeserializeObject<string>(responseJsonString);
         }
     }
 }
