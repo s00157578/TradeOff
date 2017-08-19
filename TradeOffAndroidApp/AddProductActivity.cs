@@ -16,6 +16,7 @@ using TradeOffAndroidApp.Core.Models;
 using TradeOffAndroidApp.Core.Services;
 using System.Linq;
 using Android.Views;
+using Plugin.SecureStorage;
 
 namespace TradeOffAndroidApp
 {
@@ -39,15 +40,13 @@ namespace TradeOffAndroidApp
         private string coords;
         private int _categoryId;
         private Bitmap _productImage;
-        private string _userId;
         LocationManager locMgr;
         private CredentialRepository _credentialRepository;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             _credentialRepository = new CredentialRepository();
-            GetUserId();
             base.OnCreate(savedInstanceState);
-            if (string.IsNullOrEmpty(_userId))
+            if (!CrossSecureStorage.Current.HasKey("access_token"))
             {
                 GoToLogin();
                 Finish();
@@ -70,10 +69,6 @@ namespace TradeOffAndroidApp
                 HandleEvents();
             }
                               
-        }
-        private async void GetUserId()
-        {
-            _userId = await _credentialRepository.GetUserId();
         }
         //on return from camera app read file from the specified path and set the imageview to the image, (based off xamarin tutorial)
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
