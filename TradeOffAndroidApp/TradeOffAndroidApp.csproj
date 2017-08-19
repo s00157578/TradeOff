@@ -50,6 +50,12 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Mono.Android" />
     <Reference Include="mscorlib" />
+    <Reference Include="Plugin.SecureStorage, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\sameerIOTApps.Plugin.SecureStorage.1.2.2\lib\MonoAndroid10\Plugin.SecureStorage.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.SecureStorage.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\sameerIOTApps.Plugin.SecureStorage.1.2.2\lib\MonoAndroid10\Plugin.SecureStorage.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Plugin.SecureStorage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -12,8 +13,11 @@ namespace TradeOffAndroidApp.Core
         public async Task<string> GetResponseJsonString(string url)
         {
             string responseJsonString = null;
+            var access_token = CrossSecureStorage.Current.GetValue("access_token");           
             using (var httpClient = new HttpClient())
             {
+                httpClient.DefaultRequestHeaders.Clear();
+                httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + access_token);
                 try
                 {
                     HttpResponseMessage response = httpClient.GetAsync(url).Result;

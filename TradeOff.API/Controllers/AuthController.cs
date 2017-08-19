@@ -135,5 +135,12 @@ namespace TradeOff.API.Controllers
             return NotFound();
         }
         private Task<User> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
+
+        [HttpPost("logOut")]
+        public async Task<IActionResult> LogOut()
+        {
+            await _signInManager.SignOutAsync();
+            return Ok();
+        }
     }
 }

@@ -12,7 +12,6 @@ using Microsoft.AspNetCore.Authorization;
 namespace TradeOff.API.Controllers
 {
     [Route("api/products")]
-    [Authorize]
     public class ProductsController : Controller
     {
         private IProductRepository _productRepository;

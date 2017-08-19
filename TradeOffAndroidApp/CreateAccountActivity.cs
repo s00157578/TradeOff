@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using TradeOffAndroidApp.Core.Services;
 using TradeOffAndroidApp.Core.Models;
+using Plugin.SecureStorage;
 
 namespace TradeOffAndroidApp
 {
@@ -57,8 +58,8 @@ namespace TradeOffAndroidApp
                     Email = _textEmail.Text,
                     Password = _textPassword.Text
                 };
-                bool isCreated = _credentialRepository.CreateAccount(account);
-                if (isCreated)
+                _credentialRepository.CreateAccountAsync(account);
+                if (CrossSecureStorage.Current.HasKey("access_token"))
                 {
                     GoToHome();
                     Finish();

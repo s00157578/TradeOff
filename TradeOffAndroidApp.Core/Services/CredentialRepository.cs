@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Plugin.SecureStorage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,31 +13,51 @@ namespace TradeOffAndroidApp.Core.Services
     public class CredentialRepository
     {
         private static APIConnecter _apiConnecter = new APIConnecter();
-        public bool CreateAccount(CredentialModel account)
+        public void CreateAccountAsync(CredentialModel account)
         {
             string url = UrlResourceName.ResourceName + $"api/auth/register";
             var jsonProduct = JsonConvert.SerializeObject(account);
             var httpContent = new StringContent(jsonProduct, Encoding.UTF8, "application/json");
-            return SendPostRequest(url, httpContent);
+            SendPostRequestAsync(url, httpContent);
         }
-        public bool Login(CredentialModel account)
+        public void LoginAsync(CredentialModel account)
         {
             string url = UrlResourceName.ResourceName + "api/auth/login";
             var jsonProduct = JsonConvert.SerializeObject(account);
             var httpContent = new StringContent(jsonProduct, Encoding.UTF8, "application/json");
-            return SendPostRequest(url, httpContent);
-            
+            SendPostRequestAsync(url, httpContent);
+
         }
-        private bool SendPostRequest(string url, HttpContent httpContent)
+        private async void SendPostRequestAsync(string url, HttpContent httpContent)
         {
             using (var httpClient = new HttpClient())
             {
                 HttpResponseMessage response = httpClient.PostAsync(url, httpContent).Result;
-                return response.IsSuccessStatusCode;
+                string responseJsonString = await response.Content.ReadAsStringAsync();
+                var token = JsonConvert.DeserializeObject<TokenModel>(responseJsonString);
+                CrossSecureStorage.Current.SetValue("access_token", token.access_token);
+                CrossSecureStorage.Current.SetValue("id_token", token.id_token);
             }
         }
-        public async Task<string> GetUserId()
+        public bool LogOut()
         {
+            string url = UrlResourceName.ResourceName + $"api/auth/logOut";
+
+            using (var httpClient = new HttpClient())
+            {
+                try
+                {
+                    HttpResponseMessage response = httpClient.GetAsync(url).Result;
+                    return response.IsSuccessStatusCode;
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+            public async Task<string> GetUserId()
+        {      
             string url = UrlResourceName.ResourceName + "api/auth/userId";
             string responseJsonString = await _apiConnecter.GetResponseJsonString(url);
             return JsonConvert.DeserializeObject<string>(responseJsonString);
