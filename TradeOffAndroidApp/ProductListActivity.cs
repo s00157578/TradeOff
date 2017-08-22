@@ -61,7 +61,7 @@ namespace TradeOffAndroidApp
         }
         private async void PopulateList(int id)
         {
-            if (_productListView == null)
+            if (_productList == null)
             {
                 var products = await _productRepository.GetProductsByCategory(id);
                 _productList = products.ToList();

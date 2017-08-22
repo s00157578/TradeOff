@@ -84,7 +84,7 @@ namespace TradeOff.API.Services
 
         public IEnumerable<ProductImage> GetProductImages(int productId)
         {
-            return _context.ProductImages.Where(p => p.ProductId == productId).ToList();
+            return _context.ProductImages.Where(p => p.ProductId == productId && p.IsMainImage == true).ToList();
         }
 
         public IEnumerable<Product> GetProducts()
