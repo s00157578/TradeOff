@@ -30,9 +30,9 @@ namespace TradeOff.API.Controllers
             var productEntities = _productRepository.GetProducts();
             var results = Mapper.Map<IEnumerable<ProductModel>>(productEntities);
             return Ok(results);
-        }
-        [Authorize]
+        }       
         [HttpGet("userProducts")]
+        [Authorize]
         public IActionResult GetProductsForUser()
         {
             var user = _userManager.GetUserId(HttpContext.User);

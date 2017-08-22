@@ -31,7 +31,12 @@ namespace TradeOffAndroidApp.Core.Services
             string responseJsonString = await _apiConnecter.GetResponseJsonString(url);
             return JsonConvert.DeserializeObject<ProductModel>(responseJsonString);
         }
-
+        public async Task<IEnumerable<ProductModel>> GetUserProducts()
+        {
+            string url = UrlResourceName.ResourceName + $"api/products/userProducts";
+            string responseJsonString = await _apiConnecter.GetResponseJsonString(url);
+            return JsonConvert.DeserializeObject<List<ProductModel>>(responseJsonString);
+        }
         public async Task<IEnumerable<ProductModel>> GetProductsByCategory(int categoryId)
         {
             string url = UrlResourceName.ResourceName + $"api/products/category/{categoryId}";

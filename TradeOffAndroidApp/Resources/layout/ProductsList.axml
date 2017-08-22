@@ -21,4 +21,13 @@
         android:layout_height="match_parent"
         android:id="@+id/ListviewProducts"
         android:layout_margin="5dp" />
+  <TextView
+            android:text=""
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtViewWarning"
+            android:paddingTop="5dp"
+            android:textSize="10dp"
+            android:textColor="@android:color/holo_red_dark"
+            android:layout_marginBottom="5dp" />
 </LinearLayout>

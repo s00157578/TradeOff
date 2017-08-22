@@ -15,7 +15,7 @@ using TradeOffAndroidApp.Core.Services;
 
 namespace TradeOffAndroidApp
 {
-    [Activity(Label = "HomeActivity", MainLauncher = true)]
+    [Activity(MainLauncher = true)]
     public class HomeActivity : Activity
     {
         private Button btnCategories;
@@ -71,8 +71,10 @@ namespace TradeOffAndroidApp
         }
         private void BtnYourProducts_Click(object sender, EventArgs e)
         {
-            var intent = new Intent(this, typeof(ProductListActivity));
-            StartActivity(intent);
+            var intent = new Intent();
+            intent.SetClass(this, typeof(ProductListActivity));
+            intent.PutExtra("selectedCategoryId", 0);
+            StartActivityForResult(intent, 100);
         }
         private void BtnLogin_Click(object sender, EventArgs e)
         {

@@ -12,6 +12,7 @@ using Android.Widget;
 using TradeOffAndroidApp.Core.Services;
 using TradeOffAndroidApp.Core;
 using TradeOffAndroidApp.Adapters;
+using Plugin.SecureStorage;
 
 namespace TradeOffAndroidApp
 {
@@ -19,6 +20,7 @@ namespace TradeOffAndroidApp
     public class ProductListActivity : Activity
     {
         private ProductRepository _productRepository;
+        private TextView _textViewWarning;
         private ProductImageRepository _productImageRepository;
         private List<ProductImageModel> _imageList;
         private List<ProductModel> _productList;
@@ -29,10 +31,30 @@ namespace TradeOffAndroidApp
             _productImageRepository = new ProductImageRepository();
             base.OnCreate(savedInstanceState);
             var SelectedCategoryId = Intent.Extras.GetInt("selectedCategoryId");
-            PopulateList(SelectedCategoryId);
             SetContentView(Resource.Layout.ProductsList);
             FindViews();
-            _productListView.Adapter = new ProductListDataAdapter(this, _productList, _imageList);
+            if (SelectedCategoryId == 0)
+            {
+                if (!CrossSecureStorage.Current.HasKey("idToken"))
+                {
+                    GoToLogin();
+                    Finish();
+                }
+                else
+                {
+                    PopulateUserProductList();
+                    if (_productList.Count > 0)
+
+                        _productListView.Adapter = new UserProductListAdapter(this, _productList);
+                    else
+                        _textViewWarning.Text = "You have no products to view";
+                }
+            }                   
+            else
+            {
+                PopulateList(SelectedCategoryId);
+                _productListView.Adapter = new ProductListDataAdapter(this, _productList, _imageList);
+            }          
             _productListView.FastScrollEnabled = true;
             HandleEvents();
             // Create your application here
@@ -50,9 +72,15 @@ namespace TradeOffAndroidApp
                 _imageList = images.ToList();
             }
         }
+        private async void PopulateUserProductList()
+        {
+            var products = await _productRepository.GetUserProducts();
+            _productList = products.ToList();
+        }
         private void FindViews()
         {
             _productListView = FindViewById<ListView>(Resource.Id.ListviewProducts);
+            _textViewWarning = FindViewById<TextView>(Resource.Id.txtViewWarning);
         }
         private void HandleEvents()
         {
@@ -65,6 +93,12 @@ namespace TradeOffAndroidApp
             intent.SetClass(this, typeof(ProductViewActivity));
             intent.PutExtra("selectedProductId", product.Id);
             StartActivityForResult(intent, 100);
+        }
+        private void GoToLogin()
+        {
+            var intent = new Intent();
+            intent.SetClass(this, typeof(LoginActivity));
+            StartActivity(intent);
         }
     }
 }

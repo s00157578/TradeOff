@@ -20,7 +20,7 @@ using Plugin.SecureStorage;
 
 namespace TradeOffAndroidApp
 {
-    [Activity(Label = "AddProductActivity")]   
+    [Activity(Label = "Sell Product")]   
     public class AddProductActivity : Activity, ILocationListener
     {
         private Button _btnImage;
@@ -47,11 +47,11 @@ namespace TradeOffAndroidApp
         {
             _credentialRepository = new CredentialRepository();
             base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.AddProductView);
             GetId();
-            if (!string.IsNullOrEmpty(_userId))
+            if (string.IsNullOrEmpty(_userId))
             {
                 GoToLogin();
-                Finish();
             }
             else
             {
@@ -62,15 +62,13 @@ namespace TradeOffAndroidApp
                 //prevents a uri exception when creating a directory when taking an image
                 StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
                 builder.DetectFileUriExposure();
-                StrictMode.SetVmPolicy(builder.Build());
-                SetContentView(Resource.Layout.AddProductView);
+                StrictMode.SetVmPolicy(builder.Build());                
                 GetViews();
                 PopulateLists();
                 ArrayAdapter adapter = new ArrayAdapter(this, Resource.Layout.TextViewItem, _categoryList.Select(x => x.CategoryName).ToArray());
                 _dropDownCategories.Adapter = adapter;
                 HandleEvents();
-            }
-                              
+            }                            
         }
         //gets logged in users id
         private async void GetId()
@@ -311,7 +309,8 @@ namespace TradeOffAndroidApp
         {
             var intent = new Intent();
             intent.SetClass(this, typeof(LoginActivity));
-            StartActivityForResult(intent, 100);
+            StartActivity(intent);
+            Finish();
         }
     }
     //class for the image location

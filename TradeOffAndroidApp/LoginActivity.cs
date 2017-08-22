@@ -15,7 +15,7 @@ using Plugin.SecureStorage;
 
 namespace TradeOffAndroidApp
 {
-    [Activity(Label = "LoginActivity")]
+    [Activity(Label = "Login")]
     public class LoginActivity : Activity
     {
         private TextView _textViewWarning;

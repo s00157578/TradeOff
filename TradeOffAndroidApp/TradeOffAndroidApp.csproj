@@ -118,6 +118,7 @@
   <ItemGroup>
     <Compile Include="Adapters\CategoryListAdapter.cs" />
     <Compile Include="Adapters\ProductListDataAdapter.cs" />
+    <Compile Include="Adapters\UserProductListAdapter.cs" />
     <Compile Include="AddProductActivity.cs" />
     <Compile Include="CategoriesActivity.cs" />
     <Compile Include="CreateAccountActivity.cs" />

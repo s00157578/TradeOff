@@ -28,7 +28,8 @@ namespace TradeOffAndroidApp.Core
             //send request using httpclient 
             using (var httpClient = new HttpClient(handler) { BaseAddress = baseAddress })
             {
-                cookies.Add(baseAddress, new Cookie(".AspNetCore.Identity.Application", idToken));
+                if(!string.IsNullOrEmpty(idToken))
+                    cookies.Add(baseAddress, new Cookie(".AspNetCore.Identity.Application", idToken));
                 HttpResponseMessage response = httpClient.GetAsync(url).Result;
                 responseJsonString = await response.Content.ReadAsStringAsync();
             }
@@ -47,7 +48,8 @@ namespace TradeOffAndroidApp.Core
             })
             using (var httpClient = new HttpClient(handler) { BaseAddress = baseAddress })
             {
-                cookies.Add(baseAddress, new Cookie(".AspNetCore.Identity.Application", idToken));
+                if (!string.IsNullOrEmpty(idToken))
+                    cookies.Add(baseAddress, new Cookie(".AspNetCore.Identity.Application", idToken));
                 HttpResponseMessage response = httpClient.DeleteAsync(url).Result;
                 return response.IsSuccessStatusCode;
             }
@@ -66,7 +68,8 @@ namespace TradeOffAndroidApp.Core
             })
             using (var httpClient = new HttpClient(handler) { BaseAddress = baseAddress })
             {
-                cookies.Add(baseAddress, new Cookie(".AspNetCore.Identity.Application", idToken));
+                if (!string.IsNullOrEmpty(idToken))
+                    cookies.Add(baseAddress, new Cookie(".AspNetCore.Identity.Application", idToken));
                 HttpResponseMessage response = httpClient.PostAsync(url, content).Result;
                 responseJsonString = await response.Content.ReadAsStringAsync();
             }
@@ -85,7 +88,8 @@ namespace TradeOffAndroidApp.Core
             })
             using (var httpClient = new HttpClient(handler) { BaseAddress = baseAddress })
             {
-                cookies.Add(baseAddress, new Cookie(".AspNetCore.Identity.Application", idToken));
+                if (!string.IsNullOrEmpty(idToken))
+                    cookies.Add(baseAddress, new Cookie(".AspNetCore.Identity.Application", idToken));
                 HttpResponseMessage response = httpClient.PutAsync(url, content).Result;
                 return response.IsSuccessStatusCode;
             }

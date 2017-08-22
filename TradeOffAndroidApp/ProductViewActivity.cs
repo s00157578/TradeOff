@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using TradeOffAndroidApp.Core.Services;
 using TradeOffAndroidApp.Core;
+using Plugin.SecureStorage;
 
 namespace TradeOffAndroidApp
 {
@@ -31,11 +32,15 @@ namespace TradeOffAndroidApp
         private Button _btnEmail;
         private Button _btnDelete;
         private Button _btnEdit;
+        private CredentialRepository _credentialRepository;
+        private string _userId;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             _productRepository = new ProductRepository();
+            _credentialRepository = new CredentialRepository();
             _productImageRepository = new ProductImageRepository();
             _imageCoverter = new ImageConversion();
+            GetId();
             base.OnCreate(savedInstanceState);
             var selectedProductId = Intent.Extras.GetInt("selectedProductId");
             GetProduct(selectedProductId);
@@ -45,6 +50,10 @@ namespace TradeOffAndroidApp
             SetViews();
             HandleEvents();
         }
+        private async void GetId()
+        {
+            _userId = await _credentialRepository.GetUserId();
+        }
         private async void GetProduct(int productId)
         {
             _product = await _productRepository.GetProduct(productId);
@@ -53,6 +62,16 @@ namespace TradeOffAndroidApp
         {
              IEnumerable<ProductImageModel> images = await _productImageRepository.GetProductImages(productId);
             _imageList = images.ToList();
+        }
+        private void manageAuthorisation()
+        {
+            if (_userId != _product.UserId)
+            {
+                _btnDelete.Visibility = ViewStates.Invisible;
+                _btnEdit.Visibility = ViewStates.Invisible;
+            }
+            else
+                _btnEmail.Visibility = ViewStates.Invisible;
         }
         private void FindViews()
         {
@@ -87,6 +106,14 @@ namespace TradeOffAndroidApp
 
         private void btnEmail_Click(object sender, EventArgs e)
         {
+            if (CrossSecureStorage.Current.HasKey("idToken"))
+            {
+            }
+            else
+            {
+                GoToLogin();
+                Finish();
+            }
 
         }
         private void btnEdit_Click(object sender, EventArgs e)
@@ -111,6 +138,12 @@ namespace TradeOffAndroidApp
             var geoUri = Android.Net.Uri.Parse(coOrds);
             var mapIntent = new Intent(Intent.ActionView, geoUri);
             StartActivity(mapIntent);
+        }
+        private void GoToLogin()
+        {
+            var intent = new Intent();
+            intent.SetClass(this, typeof(LoginActivity));
+            StartActivity(intent);
         }
     }
 }
