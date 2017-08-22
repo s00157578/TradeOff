@@ -8,8 +8,8 @@ using TradeOff.API.Entities;
 namespace TradeOff.API.Migrations
 {
     [DbContext(typeof(TradeOffContext))]
-    [Migration("20170803113430_Initial")]
-    partial class Initial
+    [Migration("20170822182435_inital")]
+    partial class inital
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -199,9 +199,6 @@ namespace TradeOff.API.Migrations
 
                     b.Property<int>("CategoryId");
 
-                    b.Property<string>("CategoryName")
-                        .IsRequired();
-
                     b.Property<string>("FullDescription")
                         .HasMaxLength(500);
 
@@ -217,15 +214,13 @@ namespace TradeOff.API.Migrations
                         .IsRequired()
                         .HasMaxLength(140);
 
-                    b.Property<int>("UserId");
-
-                    b.Property<string>("UserId1");
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Products");
                 });
@@ -253,9 +248,6 @@ namespace TradeOff.API.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUser");
 
-                    b.Property<string>("FirstName");
-
-                    b.Property<string>("LastName");
 
                     b.ToTable("User");
 
@@ -308,7 +300,7 @@ namespace TradeOff.API.Migrations
 
                     b.HasOne("TradeOff.API.Entities.User", "User")
                         .WithMany("Products")
-                        .HasForeignKey("UserId1");
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("TradeOff.API.Entities.ProductImage", b =>

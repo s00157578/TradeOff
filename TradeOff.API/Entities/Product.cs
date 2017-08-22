@@ -23,9 +23,8 @@ namespace TradeOff.API.Entities
         [ForeignKey("CategoryId")]
         public int CategoryId { get; set; } 
         public virtual Category Category { get; set; }
-        [ForeignKey("UserId")]
-        public int UserId { get; set; }
-        public virtual  User User { get; set; }
+        [Required]
+        public string UserId { get; set; }
         public virtual ICollection<ProductImage> ProductImages { get; set; } = new List<ProductImage>();
     }
 }

@@ -68,9 +68,6 @@ namespace TradeOff.API.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired();
-
                     b.Property<string>("Email")
                         .HasMaxLength(256);
 
@@ -109,8 +106,6 @@ namespace TradeOff.API.Migrations
                         .HasName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<string>", b =>
@@ -213,15 +208,12 @@ namespace TradeOff.API.Migrations
                         .IsRequired()
                         .HasMaxLength(140);
 
-                    b.Property<int>("UserId");
-
-                    b.Property<string>("UserId1");
+                    b.Property<string>("UserId")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("UserId1");
 
                     b.ToTable("Products");
                 });
@@ -243,16 +235,6 @@ namespace TradeOff.API.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductImages");
-                });
-
-            modelBuilder.Entity("TradeOff.API.Entities.User", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUser");
-
-
-                    b.ToTable("User");
-
-                    b.HasDiscriminator().HasValue("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
@@ -298,10 +280,6 @@ namespace TradeOff.API.Migrations
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("TradeOff.API.Entities.User", "User")
-                        .WithMany("Products")
-                        .HasForeignKey("UserId1");
                 });
 
             modelBuilder.Entity("TradeOff.API.Entities.ProductImage", b =>

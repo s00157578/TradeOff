@@ -20,26 +20,26 @@ namespace TradeOff.API
         {
             if (!_context.Users.Any())
             {
-                var userStore = new UserStore<User>(_context);
-                var user = new User()
+                var userStore = new UserStore<IdentityUser>(_context);
+                var user = new IdentityUser()
                 {
                     UserName = "kVesey",
                     Email = "S00157578@mail.itsligo.ie"
                 };
                 AddIdentity(user, userStore);
-                user = new User()
+                user = new IdentityUser()
                 {
                     UserName = "jBlogg",
                     Email = "noMail@mail.itsligo.ie"
                 };
                 AddIdentity(user, userStore);
-                user = new User()
+                user = new IdentityUser()
                 {
                     UserName = "sBlogg",
                     Email = "stillNoMail@mail.itsligo.ie"
                 };
                 AddIdentity(user, userStore);
-                user = new User()
+                user = new IdentityUser()
                 {
                     UserName = "kvesey2",
                     Email = "kevinvesey7@gmail.com"
@@ -48,9 +48,9 @@ namespace TradeOff.API
                 _context.SaveChanges();
             }
         }
-        private void AddIdentity(User user, UserStore<User> userStore)
+        private void AddIdentity(IdentityUser user, UserStore<IdentityUser> userStore)
         {
-            var password = new PasswordHasher<User>();
+            var password = new PasswordHasher<IdentityUser>();
             var hashed = password.HashPassword(user, "password");
             user.PasswordHash = hashed;
             userStore.CreateAsync(user);            

@@ -15,6 +15,6 @@ namespace TradeOff.API.Models
         [MaxLength(500)]
         public string FullDescription { get; set; }
         public decimal Price { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
     }
 }

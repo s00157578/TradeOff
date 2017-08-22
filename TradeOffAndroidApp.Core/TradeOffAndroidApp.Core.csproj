@@ -44,13 +44,11 @@
     <Compile Include="Models\ProductImageUpdateModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\ProductUpdateModel.cs" />
-    <Compile Include="Models\TokenModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CategoryRepository.cs" />
     <Compile Include="Services\CredentialRepository.cs" />
     <Compile Include="Services\ProductImageRepository.cs" />
     <Compile Include="Services\ProductRepository.cs" />
-    <Compile Include="Services\TokenManager.cs" />
     <Compile Include="UrlResourceName.cs" />
   </ItemGroup>
   <ItemGroup>

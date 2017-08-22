@@ -64,10 +64,10 @@ namespace TradeOff.API
                 .AddMvcOptions(o => o.OutputFormatters.Add(
                     new XmlDataContractSerializerOutputFormatter()));            
             var connectionString = Configuration["connectionStrings:tradeOffDBConnectionString"];
-            services.AddDbContext<TradeOffContext>(o => o.UseSqlServer(connectionString)).AddIdentity<User, IdentityRole>();
+            services.AddDbContext<TradeOffContext>(o => o.UseSqlServer(connectionString)).AddIdentity<IdentityUser, IdentityRole>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddTransient<TradeOffIdentitySeeder>();
-            services.AddIdentity<User, IdentityRole>()
+            services.AddIdentity<IdentityUser, IdentityRole>()
        .AddEntityFrameworkStores<TradeOffContext>();
         }
 

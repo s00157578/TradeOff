@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 using TradeOff.API.Models;
 using TradeOff.API.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace TradeOff.API.Controllers
 {
@@ -15,15 +17,30 @@ namespace TradeOff.API.Controllers
     public class ProductsController : Controller
     {
         private IProductRepository _productRepository;
-        public ProductsController(IProductRepository productRepository)
+        private readonly UserManager<IdentityUser> _userManager;
+        public ProductsController(IProductRepository productRepository, UserManager<IdentityUser> userManager)
         {
             _productRepository = productRepository;
+            _userManager = userManager;
         }
 
         [HttpGet]
         public IActionResult GetProducts()
         {
             var productEntities = _productRepository.GetProducts();
+            var results = Mapper.Map<IEnumerable<ProductModel>>(productEntities);
+            return Ok(results);
+        }
+        [Authorize]
+        [HttpGet("userProducts")]
+        public IActionResult GetProductsForUser()
+        {
+            var user = _userManager.GetUserId(HttpContext.User);
+            if (string.IsNullOrEmpty(user))
+                return BadRequest();
+            var productEntities = _productRepository.GetUserProducts(user);
+            if (productEntities == null)
+                return NotFound();
             var results = Mapper.Map<IEnumerable<ProductModel>>(productEntities);
             return Ok(results);
         }

@@ -12,6 +12,7 @@ namespace TradeOff.API.Services
         Category GetCategory(int categoryId);
         IEnumerable<Category> GetCategories();
         IEnumerable<Product> GetProducts();
+        IEnumerable<Product> GetUserProducts(string userId);
         Product GetProduct(int productId);
         IEnumerable<Product> GetProductsByCategory(int categoryId);
         void AddProduct(int categoryId, Product product);

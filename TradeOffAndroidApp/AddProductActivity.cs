@@ -41,12 +41,14 @@ namespace TradeOffAndroidApp
         private int _categoryId;
         private Bitmap _productImage;
         LocationManager locMgr;
+        private string _userId;
         private CredentialRepository _credentialRepository;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             _credentialRepository = new CredentialRepository();
             base.OnCreate(savedInstanceState);
-            if (!CrossSecureStorage.Current.HasKey("idToken"))
+            GetId();
+            if (!string.IsNullOrEmpty(_userId))
             {
                 GoToLogin();
                 Finish();
@@ -69,6 +71,11 @@ namespace TradeOffAndroidApp
                 HandleEvents();
             }
                               
+        }
+        //gets logged in users id
+        private async void GetId()
+        {
+           _userId = await _credentialRepository.GetUserId();
         }
         //on return from camera app read file from the specified path and set the imageview to the image, (based off xamarin tutorial)
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
@@ -174,7 +181,6 @@ namespace TradeOffAndroidApp
                 }
                 //pauses location services
                 OnPause();
-                int userId = 1;
                 if(isLocationFound)
                 {
                     //creates product
@@ -185,7 +191,7 @@ namespace TradeOffAndroidApp
                         ShortDescription = _editShortDescription.Text,
                         FullDescription = _editFullDescription.Text,
                         Price = decimal.Parse(_editPrice.Text),
-                        UserId = userId,
+                        UserId = _userId,
                     };
                     ProductModel newProduct = await _productRepository.AddProduct(_categoryId, product);
                     if(newProduct !=null)

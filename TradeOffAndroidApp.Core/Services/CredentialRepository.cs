@@ -3,6 +3,7 @@ using Plugin.SecureStorage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,14 +29,20 @@ namespace TradeOffAndroidApp.Core.Services
             SendPostRequestAsync(url, httpContent);
 
         }
-        private async void SendPostRequestAsync(string url, HttpContent httpContent)
+        private void SendPostRequestAsync(string url, HttpContent httpContent)
         {
-            using (var httpClient = new HttpClient())
+            CookieContainer cookies = new CookieContainer();
+            HttpClientHandler handler = new HttpClientHandler();
+
+            handler.CookieContainer = cookies;
+            using (var httpClient = new HttpClient(handler))
             {
                 HttpResponseMessage response = httpClient.PostAsync(url, httpContent).Result;
-                string responseJsonString = await response.Content.ReadAsStringAsync();
-                var token = JsonConvert.DeserializeObject<TokenModel>(responseJsonString);
-                CrossSecureStorage.Current.SetValue("idToken", token.idToken);
+                Uri uri = new Uri(url);
+                IEnumerable<Cookie> responseCookies = cookies.GetCookies(uri).Cast<Cookie>();
+                Cookie idCookie = responseCookies.FirstOrDefault(c => c.Name == ".AspNetCore.Identity.Application");
+                string cookieContent = idCookie.Value;
+                CrossSecureStorage.Current.SetValue("idToken", cookieContent);
             }
         }
         public bool LogOut()

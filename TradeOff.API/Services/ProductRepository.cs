@@ -97,6 +97,11 @@ namespace TradeOff.API.Services
             return _context.Products.OrderBy(p => p.Name).Where(p => p.CategoryId == categoryId).ToList();
         }
 
+        public IEnumerable<Product> GetUserProducts(string userId)
+        {
+            return _context.Products.Where(p => p.UserId == userId).ToList();
+        }
+
         public bool ProductExists(int productId)
         {
             return _context.Products.Any(p => p.Id == productId);

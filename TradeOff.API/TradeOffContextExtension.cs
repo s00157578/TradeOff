@@ -28,7 +28,7 @@ namespace TradeOff.API
                             ShortDescription = "rarely used iphone 7",
                             FullDescription = "aquired as a gift, already got a brand new cup and string communication device this year, do not need new Iphone",
                             Price = 450,
-                            UserId = 1,
+                            UserId = "1",
                             ProductImages = new List<ProductImage>()
                             {
                                 new ProductImage()
@@ -50,7 +50,7 @@ namespace TradeOff.API
                             ShortDescription = "new acer Laptop",
                             FullDescription = "brnad new acer laptop, faster than the speed of light. Used sporadically as a placemat",
                             Price = 150,
-                            UserId = 2,
+                            UserId = "2",
                             ProductImages = new List<ProductImage>()
                             {
                                 new ProductImage()
@@ -72,7 +72,7 @@ namespace TradeOff.API
                             ShortDescription = "second hand xbox one",
                             FullDescription = "almost new, good for playing games and watching netflix",
                             Price = 450,
-                            UserId = 1,
+                            UserId = "1",
                             ProductImages = new List<ProductImage>()
                             {
                                 new ProductImage()
@@ -94,7 +94,7 @@ namespace TradeOff.API
                             ShortDescription = "brand new portable radio",
                             FullDescription = "plays radio stations and other things",
                             Price = 20,
-                            UserId = 4,
+                            UserId = "4",
                             ProductImages = new List<ProductImage>()
                             {
                                 new ProductImage()
@@ -116,7 +116,7 @@ namespace TradeOff.API
                             ShortDescription = "Phone from the golden age",
                             FullDescription = "Possibly the greatest phone of all time, brand new selling at good price",
                             Price = 55,
-                            UserId = 2,
+                            UserId = "2",
                             ProductImages = new List<ProductImage>()
                             {
                                 new ProductImage()
@@ -138,7 +138,7 @@ namespace TradeOff.API
                             ShortDescription = "second hand philips pc monitor",
                             FullDescription = "21' monitor, very useful for using a desktop",
                             Price = 125,
-                            UserId = 4,
+                            UserId = "4",
                             ProductImages = new List<ProductImage>()
                             {
                                 new ProductImage()
@@ -160,7 +160,7 @@ namespace TradeOff.API
                                 ShortDescription = "brand new phone",
                                 FullDescription = "great phone very fast at calling people and stuff",
                                 Price = 550,
-                                UserId = 3,
+                                UserId = "3",
                                 ProductImages = new List<ProductImage>()
                                 {
                                     new ProductImage()
@@ -191,7 +191,7 @@ namespace TradeOff.API
                                 ShortDescription = "brand new soccer ball",
                                 FullDescription = "good for kicking into goals!",
                                 Price = 10 ,
-                                UserId = 1,
+                                UserId = "1",
                                 ProductImages = new List<ProductImage>()
                                 {
                                     new ProductImage()
@@ -213,7 +213,7 @@ namespace TradeOff.API
                                 ShortDescription = "second hand surf bopard",
                                 FullDescription = "Used surf board still in good condition",
                                 Price = 150 ,
-                                UserId = 2,
+                                UserId = "2",
                                 ProductImages = new List<ProductImage>()
                                 {
                                     new ProductImage()
@@ -235,7 +235,7 @@ namespace TradeOff.API
                                 ShortDescription = "Second hand Kayak",
                                 FullDescription = "great beginner kayak, rarely used",
                                 Price = 200 ,
-                                UserId = 3,
+                                UserId = "3",
                                 ProductImages = new List<ProductImage>()
                                 {
                                     new ProductImage()
@@ -264,7 +264,7 @@ namespace TradeOff.API
                                 ShortDescription = "brand new kettle",
                                 FullDescription = "good for boiling water",
                                 Price = 20 ,
-                                UserId = 1,
+                                UserId = "1",
                                 ProductImages = new List<ProductImage>()
                                 {
                                     new ProductImage()
@@ -286,7 +286,7 @@ namespace TradeOff.API
                                 ShortDescription = "second hand microwave",
                                 FullDescription = "Used for one year, 700 watts still working perfect",
                                 Price = 150 ,
-                                UserId = 2,
+                                UserId = "2",
                                 ProductImages = new List<ProductImage>()
                                 {
                                     new ProductImage()
@@ -308,7 +308,7 @@ namespace TradeOff.API
                                 ShortDescription = "new blender",
                                 FullDescription = "good for making smoothies and blending stuff",
                                 Price = 200 ,
-                                UserId = 3,
+                                UserId = "3",
                                 ProductImages = new List<ProductImage>()
                                 {
                                     new ProductImage()
@@ -337,7 +337,7 @@ namespace TradeOff.API
                                 ShortDescription = "second hand push lawnmower",
                                 FullDescription = "second hand lawnmower great for cutting grass and staying in shape",
                                 Price = 90 ,
-                                UserId = 1,
+                                UserId = "1",
                                 ProductImages = new List<ProductImage>()
                                 {
                                     new ProductImage()
@@ -359,7 +359,7 @@ namespace TradeOff.API
                                 ShortDescription = "second hand strimmer",
                                 FullDescription = "good strimmer for sale, only used for two seasons",
                                 Price = 150 ,
-                                UserId = 2,
+                                UserId = "2",
                                 ProductImages = new List<ProductImage>()
                                 {
                                     new ProductImage()
@@ -381,7 +381,7 @@ namespace TradeOff.API
                                 ShortDescription = "new electric hedge trimmer",
                                 FullDescription = "brand new electric hedge trimmer with telescopic attachments",
                                 Price = 200 ,
-                                UserId = 3,
+                                UserId = "3",
                                 ProductImages = new List<ProductImage>()
                                 {
                                     new ProductImage()
@@ -410,7 +410,7 @@ namespace TradeOff.API
                                 ShortDescription = "second hand sofa",
                                 FullDescription = "still in great condition, fits four people, newly upholstered",
                                 Price = 10 ,
-                                UserId = 1,
+                                UserId = "1",
                                 ProductImages = new List<ProductImage>()
                                 {
                                     new ProductImage()
@@ -432,7 +432,7 @@ namespace TradeOff.API
                                 ShortDescription = "second hand oak dining table",
                                 FullDescription = "good quality table solid oak, sits 8 people",
                                 Price = 150 ,
-                                UserId = 2,
+                                UserId = "2",
                                 ProductImages = new List<ProductImage>()
                                 {
                                     new ProductImage()
@@ -454,7 +454,7 @@ namespace TradeOff.API
                                 ShortDescription = "Second hand aluminium bed frame",
                                 FullDescription = "good bed frame, light weight, easy to transport",
                                 Price = 200 ,
-                                UserId = 3,
+                                UserId = "3",
                                 ProductImages = new List<ProductImage>()
                                 {
                                     new ProductImage()

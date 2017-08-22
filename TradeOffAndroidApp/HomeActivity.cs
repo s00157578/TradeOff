@@ -24,7 +24,7 @@ namespace TradeOffAndroidApp
         private Button btnLogin;
         private CredentialRepository _credentialRepository;
         private bool _isLoggedIn = false;
-       // private TokenManager token;
+        // private TokenManager token;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             SecureStorageImplementation.StoragePassword = "TradeOffPassword18/08/17";
@@ -32,17 +32,18 @@ namespace TradeOffAndroidApp
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.HomePage);
             FindViews();
-           //  token = new TokenManager();
+            //  token = new TokenManager();
             //token.DecodeIdToken();
-            if (CrossSecureStorage.Current.HasKey("access_token"))
+            if (CrossSecureStorage.Current.HasKey("idToken"))
             {
                 btnLogin.Text = "Log out";
                 btnLogin.SetBackgroundColor(Color.Red);
                 _isLoggedIn = true;
             }
-                HandleEvents();
+            HandleEvents();
             // Create your application here
         }
+        
         private void FindViews()
         {
             btnCategories = FindViewById<Button>(Resource.Id.btnCategories);
@@ -79,8 +80,7 @@ namespace TradeOffAndroidApp
             {
 
                 btnLogin.Text = "Log In";
-                CrossSecureStorage.Current.DeleteKey("access_token");
-                CrossSecureStorage.Current.DeleteKey("id_token");
+                CrossSecureStorage.Current.DeleteKey("idToken");
                 if(_credentialRepository.LogOut())
                 {
                     

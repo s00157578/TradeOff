@@ -18,12 +18,12 @@ namespace TradeOff.API.Controllers
     [Route("api/auth")]
     public class AuthController : Controller
     {
-        private readonly UserManager<User> _userManager;
-        private readonly SignInManager<User> _signInManager;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
         private readonly JWTSettings _options;
         private byte[] secret = new byte[] { 164, 60, 194, 0, 161, 189, 41, 38, 130, 89, 141, 164, 45, 170, 159, 209, 69, 137, 243, 216, 191, 131, 47, 250, 32, 107, 231, 117, 37, 158, 225, 234 };
 
-        public AuthController(UserManager<User> userManager, SignInManager<User> signInManager, IOptions<JWTSettings> optionsAccessor)
+        public AuthController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, IOptions<JWTSettings> optionsAccessor)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -34,7 +34,7 @@ namespace TradeOff.API.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = Credentials.Email, Email = Credentials.Email };
+                var user = new IdentityUser { UserName = Credentials.Email, Email = Credentials.Email };
                 var result = await _userManager.CreateAsync(user, Credentials.Password);
                 if (result.Succeeded)
                 {
@@ -49,7 +49,7 @@ namespace TradeOff.API.Controllers
             }
             return Error("Unexpected error");
         }
-        private string GetIdToken(User user)
+        private string GetIdToken(IdentityUser user)
         {
             var payload = new Dictionary<string, object>
       {
@@ -122,7 +122,7 @@ namespace TradeOff.API.Controllers
                 return Ok(userId);
             return NotFound();
         }
-        private Task<User> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
+        private Task<IdentityUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         [HttpPost("logOut")]
         public async Task<IActionResult> LogOut()

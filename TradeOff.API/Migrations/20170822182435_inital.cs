@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace TradeOff.API.Migrations
 {
-    public partial class Initial : Migration
+    public partial class inital : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -42,9 +42,7 @@ namespace TradeOff.API.Migrations
                     PhoneNumberConfirmed = table.Column<bool>(nullable: false),
                     SecurityStamp = table.Column<string>(nullable: true),
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
-                    UserName = table.Column<string>(maxLength: 256, nullable: true),
-                    FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true)
+                    UserName = table.Column<string>(maxLength: 256, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -171,14 +169,12 @@ namespace TradeOff.API.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CategoryId = table.Column<int>(nullable: false),
-                    CategoryName = table.Column<string>(nullable: false),
                     FullDescription = table.Column<string>(maxLength: 500, nullable: true),
                     Location = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: false),
                     Price = table.Column<decimal>(nullable: false),
                     ShortDescription = table.Column<string>(maxLength: 140, nullable: false),
-                    UserId = table.Column<int>(nullable: false),
-                    UserId1 = table.Column<string>(nullable: true)
+                    UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -190,8 +186,8 @@ namespace TradeOff.API.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Products_AspNetUsers_UserId1",
-                        column: x => x.UserId1,
+                        name: "FK_Products_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -261,9 +257,9 @@ namespace TradeOff.API.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_UserId1",
+                name: "IX_Products_UserId",
                 table: "Products",
-                column: "UserId1");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductImages_ProductId",
