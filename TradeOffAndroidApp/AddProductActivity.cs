@@ -46,7 +46,7 @@ namespace TradeOffAndroidApp
         {
             _credentialRepository = new CredentialRepository();
             base.OnCreate(savedInstanceState);
-            if (!CrossSecureStorage.Current.HasKey("access_token"))
+            if (!CrossSecureStorage.Current.HasKey("idToken"))
             {
                 GoToLogin();
                 Finish();

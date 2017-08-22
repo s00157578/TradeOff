@@ -35,8 +35,7 @@ namespace TradeOffAndroidApp.Core.Services
                 HttpResponseMessage response = httpClient.PostAsync(url, httpContent).Result;
                 string responseJsonString = await response.Content.ReadAsStringAsync();
                 var token = JsonConvert.DeserializeObject<TokenModel>(responseJsonString);
-                CrossSecureStorage.Current.SetValue("access_token", token.access_token);
-                CrossSecureStorage.Current.SetValue("id_token", token.id_token);
+                CrossSecureStorage.Current.SetValue("idToken", token.idToken);
             }
         }
         public bool LogOut()

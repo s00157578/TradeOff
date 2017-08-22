@@ -21,6 +21,8 @@ namespace TradeOff.API.Controllers
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly JWTSettings _options;
+        private byte[] secret = new byte[] { 164, 60, 194, 0, 161, 189, 41, 38, 130, 89, 141, 164, 45, 170, 159, 209, 69, 137, 243, 216, 191, 131, 47, 250, 32, 107, 231, 117, 37, 158, 225, 234 };
+
         public AuthController(UserManager<User> userManager, SignInManager<User> signInManager, IOptions<JWTSettings> optionsAccessor)
         {
             _userManager = userManager;
@@ -38,10 +40,9 @@ namespace TradeOff.API.Controllers
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return new JsonResult(new Dictionary<string, object>
-          {
-            { "access_token", GetAccessToken(Credentials.Email) },
-            { "id_token", GetIdToken(user) }
-          });
+                    {
+                        { "idToken", GetIdToken(user) }
+                    });
                 }
                 return Errors(result);
 
@@ -68,29 +69,16 @@ namespace TradeOff.API.Controllers
                 {
                     var user = await _userManager.FindByEmailAsync(Credentials.Email);
                     return new JsonResult(new Dictionary<string, object>
-      {
-        { "access_token", GetAccessToken(Credentials.Email) },
-        { "id_token", GetIdToken(user) }
-      });
+                    {
+                        { "idToken", GetIdToken(user) }
+                    });
                 }
                 return new JsonResult("Unable to sign in") { StatusCode = 401 };
             }
             return Error("Unexpected error");
-        }
-
-        private string GetAccessToken(string Email)
-        {
-            var payload = new Dictionary<string, object>
-      {
-        { "sub", Email },
-        { "email", Email }
-      };
-            return GetToken(payload);
-        }
-
+        }     
         private string GetToken(Dictionary<string, object> payload)
         {
-            var secret = _options.SecretKey;
 
             payload.Add("iss", _options.Issuer);
             payload.Add("aud", _options.Audience);

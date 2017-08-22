@@ -26,6 +26,8 @@ namespace TradeOffAndroidApp
 		
 		public static void UpdateIdValues()
 		{
+			global::PCLCrypto.Resource.String.ApplicationName = global::TradeOffAndroidApp.Resource.String.ApplicationName;
+			global::PCLCrypto.Resource.String.Hello = global::TradeOffAndroidApp.Resource.String.Hello;
 		}
 		
 		public partial class Attribute

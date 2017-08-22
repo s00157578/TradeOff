@@ -13,11 +13,11 @@ namespace TradeOffAndroidApp.Core
         public async Task<string> GetResponseJsonString(string url)
         {
             string responseJsonString = null;
-            var access_token = CrossSecureStorage.Current.GetValue("access_token");           
+            var idToken = CrossSecureStorage.Current.GetValue("idToken");           
             using (var httpClient = new HttpClient())
             {
                 httpClient.DefaultRequestHeaders.Clear();
-                httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + access_token);
+                httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + idToken);
                 try
                 {
                     HttpResponseMessage response = httpClient.GetAsync(url).Result;

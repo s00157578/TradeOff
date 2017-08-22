@@ -59,7 +59,7 @@ namespace TradeOffAndroidApp
                     Password = _textPassword.Text
                 };
                 _credentialRepository.CreateAccountAsync(account);
-                if (CrossSecureStorage.Current.HasKey("access_token"))
+                if (CrossSecureStorage.Current.HasKey("idToken"))
                 {
                     GoToHome();
                     Finish();
