@@ -50,11 +50,13 @@ namespace TradeOff.API.Controllers
             var to = new EmailAddress(sellingEmail, sellingEmail);
             var subject = $"Interest in purchase of: {product.Name}";
             var plainTextContent = "";
-            var htmlContent = $@"Hi, <a>{buyingEmail}</a> is interested in the product you are selling : {product.Name}. 
-Please get in touch with the user at the following email address: <a>{buyingEmail}</a>
-
+            var htmlContent = $@"Hi,<br/> <a href='mailto:{buyingEmail}?Subject=TradeOff,%20{product.Name}%20for%20sale' target='_top'>{buyingEmail}</a> is interested in the product you are selling: <br/> {product.Name}. 
+<br/><br/>Please get in touch with the user at the following email address: <br/><ahref='mailto:{buyingEmail}?Subject=TradeOff,%20{product.Name}%20for%20sale' target='_top'>{buyingEmail}</a>
+<br/><br/>
 if the product is no longer for sale please log in to your account and delete the listing.
+<br/><br/>
 Yours,
+<br/>
 TradeOff Team.";
             var message = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
 
