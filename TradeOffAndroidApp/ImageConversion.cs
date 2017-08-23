@@ -19,6 +19,7 @@ namespace TradeOffAndroidApp
     {
         public byte[] BitmapToByteArray(Bitmap image)
         {
+            //converts bitmap to byteArray
             byte[] arr;
             using (MemoryStream ms = new MemoryStream())
             {
@@ -27,26 +28,30 @@ namespace TradeOffAndroidApp
             }
             return arr;
         }
+        //converts byte[] to bitmap
         public Bitmap ByteArrayToBitmap(byte[] byteArray)
         {
             return BitmapFactory.DecodeByteArray(byteArray, 0, byteArray.Length);
         }
-        //loads a bitmap from a file
+        //loads a bitmap from a file and scales down size.
         public Bitmap LoadBitmap( string fileName)
         {
             int maxWidth;
             int maxHeight;
+            //sets options
             var options = new BitmapFactory.Options()
             {
                 InJustDecodeBounds = false,
                 InPurgeable = true,
             };
+            //loads image from file
             var image = BitmapFactory.DecodeFile(fileName, options);     
            if (image != null)
            {
                 var sourceSize = new Size((int)image.GetBitmapInfo().Height, (int)image.GetBitmapInfo().Width);
                 maxWidth = sourceSize.Width / 3;
                 maxHeight = sourceSize.Height / 3;
+                //scales image
                 var bitmapScaled = Bitmap.CreateScaledBitmap(image, maxWidth, maxHeight, true);
                 return bitmapScaled;
            }

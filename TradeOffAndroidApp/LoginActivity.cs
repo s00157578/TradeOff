@@ -33,6 +33,7 @@ namespace TradeOffAndroidApp
             HandleEvents();
             // Create your application here
         }
+        //gets the views
         private void GetViews()
         {
             _textViewWarning = FindViewById<TextView>(Resource.Id.txtViewWarning);
@@ -41,12 +42,13 @@ namespace TradeOffAndroidApp
             _btnLogin = FindViewById<Button>(Resource.Id.btnLogin);
             _btnCreateAccount = FindViewById<Button>(Resource.Id.btnCreateAccount);
         }
+        //handles events
         private void HandleEvents()
         {
             _btnLogin.Click += _btnLogin_Click;
             _btnCreateAccount.Click += _btnCreateAccount_Click;
         }
-
+        //goes to create account activity
         private void _btnCreateAccount_Click(object sender, EventArgs e)
         {
             var intent = new Intent();
@@ -57,19 +59,23 @@ namespace TradeOffAndroidApp
 
         private void _btnLogin_Click(object sender, EventArgs e)
         {
+            //sends login reuest
             bool isValid = IsInputValid();
             if (isValid)
             {
+                //create account credential model and sends it
                 CredentialModel account = new CredentialModel()
                 {
                     Email = _textEmail.Text,
                     Password = _textPassword.Text
                 };
                 _credentialRepository.LoginAsync(account);
+                //if logged in user has idToken
                 if (CrossSecureStorage.Current.HasKey("idToken"))
                 {
                     GoToHome();
                 }
+                //login error
                 else
                     _textViewWarning.Text = "there was an error on login";
 
@@ -77,6 +83,7 @@ namespace TradeOffAndroidApp
             else
                 _textViewWarning.Text = "Input was not valid";
         }
+        //checks is valif
         private bool IsInputValid()
         {
             if (string.IsNullOrEmpty(_textEmail.Text))
@@ -85,6 +92,7 @@ namespace TradeOffAndroidApp
                 return false;
             return true;
         }
+        //goes to home activity
         private void GoToHome()
         {
             var intent = new Intent();

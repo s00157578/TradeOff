@@ -43,46 +43,61 @@ namespace TradeOffAndroidApp
             _credentialRepository = new CredentialRepository();
             _productImageRepository = new ProductImageRepository();
             _imageCoverter = new ImageConversion();           
+
             base.OnCreate(savedInstanceState);
+            //gets productId from intent
             var selectedProductId = Intent.Extras.GetInt("selectedProductId");
+            //gets the product
             GetProduct(selectedProductId);
+            //gets the product images
             GetImages(selectedProductId);
+            //sets view
             SetContentView(Resource.Layout.IndividualProductView);
-            GetId();
+            //gets userId
+            GetUserId();
+            //finds the views
             FindViews();
             SetViews();
+            //manages what buttons are available to user
             ManageAuthorisation();
-            HandleEvents();
+            HandleEvents(); 
         }
-        private async void GetId()
+        private async void GetUserId()
         {
+            //gets logged in userId
             _userId = await _credentialRepository.GetUserId();
         }
         private async void GetProduct(int productId)
         {
+            //gets product
             _product = await _productRepository.GetProduct(productId);
         }
         private async void GetImages(int productId)
         {
+            //gets product imaes
              IEnumerable<ProductImageModel> images = await _productImageRepository.GetProductImages(productId);
             _imageList = images.ToList();
         }
         private async void ManageAuthorisation()
         {
+            //if it is not user product not able to delete or edit
             if (_userId != _product.UserId)
             {
                 _btnDelete.Visibility = ViewStates.Invisible;
                 _btnEdit.Visibility = ViewStates.Invisible;
             }
+            //else if it is user product not able to email themselves
             else
                 _btnEmail.Visibility = ViewStates.Invisible;
             bool hasEmailed = await _emailRepository.HasEmailedBefore(_product.Id);
             if (hasEmailed)
             {
+                //if has emailed before not able to email again
                 _btnEmail.Visibility = ViewStates.Invisible;
                 _textViewWarning.Text = "You already emailed the seller of this product.";
             }         
         }
+        //finds views
         private void FindViews()
         {
             _textViewWarning = FindViewById<TextView>(Resource.Id.txtViewWarning);
@@ -96,6 +111,7 @@ namespace TradeOffAndroidApp
             _btnEdit = FindViewById<Button>(Resource.Id.btnEdit);
             _btnDelete = FindViewById<Button>(Resource.Id.btnDelete);
         }
+        //populates the views with the product content
         private void SetViews()
         {
             var mainImage = _imageList.FirstOrDefault(i => i.IsMainImage == true);
@@ -106,6 +122,7 @@ namespace TradeOffAndroidApp
             _FullDescriptionView.Text = _product.FullDescription;
             _priceView.Text = _product.Price.ToString();
         }
+        //handleEvents
         private void HandleEvents()
         {
             _btnEmail.Click += BtnEmail_Click;
@@ -114,7 +131,7 @@ namespace TradeOffAndroidApp
             _btnDelete.Click += BtnDelete_Click;
 
         }
-
+        //emails the seller if has token
         private void BtnEmail_Click(object sender, EventArgs e)
         {
             if (CrossSecureStorage.Current.HasKey("idToken"))
@@ -124,16 +141,19 @@ namespace TradeOffAndroidApp
                     _btnEmail.Visibility = ViewStates.Invisible;
                     _textViewWarning.Text = "email sent to the seller of this product.";
                 }
+                //if not successful
                 else
                     _textViewWarning.Text = "Something went wrong. Try again Later";
             }
             else
             {
+                //go to login page if not logged in
                 GoToLogin();
                 Finish();
             }
 
         }
+        //go to edit activity
         private void BtnEdit_Click(object sender, EventArgs e)
         {
             var intent = new Intent();
@@ -143,6 +163,7 @@ namespace TradeOffAndroidApp
         } 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
+            //deletes the current product and goes back to product list needs to reload 
             _productRepository.DeleteProduct(_product.Id);
             var intent = new Intent();
             intent.SetClass(this, typeof(ProductListActivity));
@@ -150,6 +171,7 @@ namespace TradeOffAndroidApp
             StartActivity(intent);
             Finish();
         }
+        //opens map at the products location
         private void BtnLocation_Click (object sender, EventArgs e)
         {
             var coOrds = $"geo:{_product.Location}";
@@ -157,6 +179,7 @@ namespace TradeOffAndroidApp
             var mapIntent = new Intent(Intent.ActionView, geoUri);
             StartActivity(mapIntent);
         }
+        //goes to login page
         private void GoToLogin()
         {
             var intent = new Intent();

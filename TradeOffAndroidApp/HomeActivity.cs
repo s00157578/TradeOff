@@ -24,26 +24,26 @@ namespace TradeOffAndroidApp
         private Button btnLogin;
         private CredentialRepository _credentialRepository;
         private bool _isLoggedIn = false;
-        // private TokenManager token;
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            //required password to be set for securestorage plugin
             SecureStorageImplementation.StoragePassword = "TradeOffPassword18/08/17";
             _credentialRepository = new CredentialRepository();
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.HomePage);
+            //finds the views on the home page
             FindViews();
-            //  token = new TokenManager();
-            //token.DecodeIdToken();
+            //checks if there is is an idToken present ie logged in
             if (CrossSecureStorage.Current.HasKey("idToken"))
             {
+                //if logged in sets login button text to log out
                 btnLogin.Text = "Log out";
                 btnLogin.SetBackgroundColor(Color.Red);
                 _isLoggedIn = true;
             }
             HandleEvents();
-            // Create your application here
         }
-        
+        //gets the views from page
         private void FindViews()
         {
             btnCategories = FindViewById<Button>(Resource.Id.btnCategories);
@@ -51,6 +51,7 @@ namespace TradeOffAndroidApp
             btnYourProducts = FindViewById<Button>(Resource.Id.btnYourProducts);
             btnLogin = FindViewById<Button>(Resource.Id.btnLogin);
         }
+        //handles events
         private void HandleEvents()
         {
             btnCategories.Click += BtnCategories_Click;
@@ -58,7 +59,7 @@ namespace TradeOffAndroidApp
             btnYourProducts.Click += BtnYourProducts_Click;
             btnLogin.Click += BtnLogin_Click;
         }
-        
+        //on button click go to the different activities
         private void BtnCategories_Click(object sender, EventArgs e)
         {
             var intent = new Intent(this, typeof(CategoriesActivity));
@@ -78,6 +79,7 @@ namespace TradeOffAndroidApp
         }
         private void BtnLogin_Click(object sender, EventArgs e)
         {
+            //on login.click if logged in logout else go to login page
             if(_isLoggedIn)
             {
 

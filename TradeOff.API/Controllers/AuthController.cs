@@ -21,6 +21,7 @@ namespace TradeOff.API.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly JWTSettings _options;
+        //secret for coding token
         private byte[] secret = new byte[] { 164, 60, 194, 0, 161, 189, 41, 38, 130, 89, 141, 164, 45, 170, 159, 209, 69, 137, 243, 216, 191, 131, 47, 250, 32, 107, 231, 117, 37, 158, 225, 234 };
 
         public AuthController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, IOptions<JWTSettings> optionsAccessor)
@@ -34,6 +35,7 @@ namespace TradeOff.API.Controllers
         {
             if (ModelState.IsValid)
             {
+                //creates new identityUser
                 var user = new IdentityUser { UserName = Credentials.Email, Email = Credentials.Email };
                 var result = await _userManager.CreateAsync(user, Credentials.Password);
                 if (result.Succeeded)
@@ -62,14 +64,19 @@ namespace TradeOff.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] CredentialModel Credentials)
         {
+            //login  if modelstate is valid
             if (ModelState.IsValid)
             {
+                //signs user in
                 var result = await _signInManager.PasswordSignInAsync(Credentials.Email, Credentials.Password, false, false);
+                //if signed in
                 if (result.Succeeded)
                 {
+                    //gets the user
                     var user = await _userManager.FindByEmailAsync(Credentials.Email);
                     return new JsonResult(new Dictionary<string, object>
                     {
+                        //creates a token for the user
                         { "idToken", GetIdToken(user) }
                     });
                 }
@@ -79,20 +86,24 @@ namespace TradeOff.API.Controllers
         }     
         private string GetToken(Dictionary<string, object> payload)
         {
+            //adds to token, issuer, the audience, the dateTimes and expiry date in 7 days
 
             payload.Add("iss", _options.Issuer);
             payload.Add("aud", _options.Audience);
             payload.Add("nbf", ConvertToUnixTimestamp(DateTime.Now));
             payload.Add("iat", ConvertToUnixTimestamp(DateTime.Now));
             payload.Add("exp", ConvertToUnixTimestamp(DateTime.Now.AddDays(7)));
+            //coding algorithm
             IJwtAlgorithm algorithm = new HMACSHA256Algorithm();
+            //serializer to json
             IJsonSerializer serializer = new JsonNetSerializer();
             IBase64UrlEncoder urlEncoder = new JwtBase64UrlEncoder();
+            //encoder 
             IJwtEncoder encoder = new JwtEncoder(algorithm, serializer, urlEncoder);
-
+            //encodes and returns the encoded token
             return encoder.Encode(payload, secret);
         }
-
+        //list of errors
         private JsonResult Errors(IdentityResult result)
         {
             var items = result.Errors
@@ -101,11 +112,12 @@ namespace TradeOff.API.Controllers
             return new JsonResult(items) { StatusCode = 400 };
         }
 
+        //returns the error messafe
         private JsonResult Error(string message)
         {
             return new JsonResult(message) { StatusCode = 400 };
         }
-
+        //creates time stamp
         private static double ConvertToUnixTimestamp(DateTime date)
         {
             DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
@@ -114,6 +126,7 @@ namespace TradeOff.API.Controllers
         }
         [Authorize]
         [HttpGet("userId")]
+        //gets userId
         public async Task<IActionResult> GetUserId()
         {
             var user = await GetCurrentUserAsync();
@@ -122,6 +135,7 @@ namespace TradeOff.API.Controllers
                 return Ok(userId);
             return NotFound();
         }
+        //gets the current user
         private Task<IdentityUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         [HttpPost("logOut")]

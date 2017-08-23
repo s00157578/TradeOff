@@ -12,6 +12,7 @@ namespace TradeOffAndroidApp.Core.Services
     public class EmailRepository
     {
         private static APIConnecter _apiConnecter = new APIConnecter();
+        //sends a request to the api to email the seller, same concept as apiConnecter requests, checks if successful
         public bool EmailSeller(int productId)
         {
             string url = UrlResourceName.ResourceName + $"api/email/{productId}/sendEmail";

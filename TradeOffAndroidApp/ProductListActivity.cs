@@ -30,29 +30,38 @@ namespace TradeOffAndroidApp
             _productRepository = new ProductRepository();
             _productImageRepository = new ProductImageRepository();
             base.OnCreate(savedInstanceState);
+            //gets the selected category id sent with the intent
             var SelectedCategoryId = Intent.Extras.GetInt("selectedCategoryId");
+            //sets the view
             SetContentView(Resource.Layout.ProductsList);
+            //finds all the view items (buttons textboxes etc)
             FindViews();
+            //if 0 it means logged in users products
             if (SelectedCategoryId == 0)
             {
+                //if not logged in go to login and finish activity
                 if (!CrossSecureStorage.Current.HasKey("idToken"))
                 {
                     GoToLogin();
                     Finish();
                 }
                 else
+                //populates list with 
                 {
                     PopulateUserProductList();
                     if (_productList.Count > 0)
-
+                        //sets listview.adapter to the list of products 
                         _productListView.Adapter = new UserProductListAdapter(this, _productList);
                     else
+                        //if user has no products 
                         _textViewWarning.Text = "You have no products to view";
                 }
             }                   
             else
             {
+                //if category populates productlist with products by category
                 PopulateList(SelectedCategoryId);
+                //sets listview adds image and products list
                 _productListView.Adapter = new ProductListDataAdapter(this, _productList, _imageList);
             }          
             _productListView.FastScrollEnabled = true;
@@ -61,6 +70,7 @@ namespace TradeOffAndroidApp
         }
         private async void PopulateList(int id)
         {
+            //populates the lists
             if (_productList == null)
             {
                 var products = await _productRepository.GetProductsByCategory(id);
@@ -72,6 +82,7 @@ namespace TradeOffAndroidApp
                 _imageList = images.ToList();
             }
         }
+        //populates the product list for user
         private async void PopulateUserProductList()
         {
             var products = await _productRepository.GetUserProducts();
@@ -88,12 +99,14 @@ namespace TradeOffAndroidApp
         }
         private void ProductListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
+            //goes to product based on item clicked includes the clicked product id
             var product = _productList[e.Position];
             var intent = new Intent();
             intent.SetClass(this, typeof(ProductViewActivity));
             intent.PutExtra("selectedProductId", product.Id);
             StartActivityForResult(intent, 100);
         }
+        //goes to login page
         private void GoToLogin()
         {
             var intent = new Intent();

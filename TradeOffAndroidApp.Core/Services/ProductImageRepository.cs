@@ -10,14 +10,18 @@ namespace TradeOffAndroidApp.Core.Services
 {
     public class ProductImageRepository
     {
+        //repository pattern for crud product actions, requests are sent from the APIConnecter
         private APIConnecter _apiConnecter = new APIConnecter();
         public async Task<ProductImageModel> AddProductImage(int productId, ProductImageCreateModel productImage)
         {
             string url = UrlResourceName.ResourceName + $"api/products/{productId}/productImage";
-
+            //serializes the object to json
             var jsonProduct = JsonConvert.SerializeObject(productImage);
+            ///Sets the http content
             var httpContent = new StringContent(jsonProduct, Encoding.UTF8, "application/json");
+            //calls the apiConnecter classes postRequest and passes in the url and conent
             string responseJson = await _apiConnecter.PostRequest(url, httpContent);
+            //deserialzes what has been returned
             return JsonConvert.DeserializeObject<ProductImageModel>(responseJson);
         }
         public bool DeleteProductImage(int productImageId)

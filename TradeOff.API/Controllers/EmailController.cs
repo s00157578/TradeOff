@@ -30,22 +30,26 @@ namespace TradeOff.API.Controllers
         [Authorize]
         public async Task<IActionResult> SendEmail(int productId)
         {          
+            //gets the buying users ID (logged in user)
             var buyingUserId = _userManager.GetUserId(HttpContext.User);
             if (string.IsNullOrEmpty(buyingUserId))
                 return BadRequest();
-
+            //gets product
             var product = _productRepository.GetProduct(productId);
             if (product == null)
                 return NotFound();
-
+            //gets buying and selling email based on userId
             string buyingEmail = _emailRepository.GetUserEmail(buyingUserId);
             string sellingEmail = _emailRepository.GetUserEmail(product.UserId);
             if (string.IsNullOrEmpty(buyingEmail) || string.IsNullOrEmpty(sellingEmail))
                 return NotFound();
+            //checks if email has been sent before
             if (_emailRepository.HasEmailedBefore(buyingUserId, product.Id))
                 return BadRequest("user already emailed seller of product");
-            var apiKey = "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";
-            var client = new SendGridClient(apiKey);
+            //sendgrid api key
+            var sendGridapiKey = "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";
+            //creates email, based of sendgrid example
+            var client = new SendGridClient(sendGridapiKey);
             var from = new EmailAddress("TradeOffProject@gmail.com", "TradeOff");            
             var to = new EmailAddress(sellingEmail, sellingEmail);
             var subject = $"Interest in purchase of: {product.Name}";
@@ -58,8 +62,9 @@ if the product is no longer for sale please log in to your account and delete th
 Yours,
 <br/>
 TradeOff Team.";
+            //sends email
             var message = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
-
+            //checks response and returns (can't just return response because I am using a .net core api
             var response = await client.SendEmailAsync(message);
             if(response.StatusCode == System.Net.HttpStatusCode.Accepted)
             {
@@ -71,6 +76,7 @@ TradeOff Team.";
             return BadRequest("Email could not be sent");
         }
         [HttpGet("{productId}/hasEmailedBefore")]
+        //checks if the user has emailed before
         public IActionResult HasEmailedBefore(int productId)
         {
             var userId = _userManager.GetUserId(HttpContext.User);

@@ -44,6 +44,7 @@ namespace TradeOffAndroidApp
         {
             _categoryListView = FindViewById<ListView>(Resource.Id.ListviewCategories);
         }
+        //on click of item in listview goto productlist activity include the category id clicked
         private void CategoryListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
             var category = _categoriesList[e.Position];

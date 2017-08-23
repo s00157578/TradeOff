@@ -30,6 +30,7 @@ namespace TradeOff.API.Controllers
         public IActionResult GetProducts()
         {
             var productEntities = _productRepository.GetProducts();
+            //maps the product entities to the productModel to return
             var results = Mapper.Map<IEnumerable<ProductModel>>(productEntities);
             return Ok(results);
         }       
@@ -37,9 +38,11 @@ namespace TradeOff.API.Controllers
         [Authorize]
         public IActionResult GetProductsForUser()
         {
+            //gets logged in users id
             var user = _userManager.GetUserId(HttpContext.User);
             if (string.IsNullOrEmpty(user))
                 return BadRequest();
+
             var productEntities = _productRepository.GetUserProducts(user);
             if (productEntities == null)
                 return NotFound();
@@ -61,8 +64,8 @@ namespace TradeOff.API.Controllers
             var imageEntities = _productRepository.GetProductImages(productId);
             if (imageEntities == null)
                 return NotFound();
-            var imageResult = Mapper.Map<IEnumerable<ProductImageModel>>(imageEntities);
-            return Ok(imageResult);
+            var imageModel = Mapper.Map<IEnumerable<ProductImageModel>>(imageEntities);
+            return Ok(imageModel);
         }
         [HttpGet("getMainImagesByCategory/{categoryId}")]
         public IActionResult GetMainImagesByCategory(int categoryId)
@@ -70,8 +73,8 @@ namespace TradeOff.API.Controllers
             var imageEntities = _productRepository.GetMainImagesByCategory(categoryId);
             if (imageEntities == null)
                 return NotFound();
-            var imageResult = Mapper.Map<IEnumerable<ProductImageModel>>(imageEntities);
-            return Ok(imageResult);
+            var imageModel = Mapper.Map<IEnumerable<ProductImageModel>>(imageEntities);
+            return Ok(imageModel);
         }
         [HttpGet("productimage/{id}")]
         public IActionResult GetProductImage(int id)
@@ -81,8 +84,8 @@ namespace TradeOff.API.Controllers
             var image = _productRepository.GetProductImage(id);
             if (image == null)
                 return NotFound();
-            var imageResult = Mapper.Map<ProductImageModel>(image);
-            return Ok(imageResult);
+            var imageModel = Mapper.Map<ProductImageModel>(image);
+            return Ok(imageModel);
         }
         [HttpGet("productImage/mainImages")]
         public IActionResult GetMainProductImages()
@@ -122,12 +125,12 @@ namespace TradeOff.API.Controllers
                 return BadRequest();
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var finalProduct = Mapper.Map<Entities.Product>(product);
-            _productRepository.AddProduct(categoryId, finalProduct);
+            var createdProductEntity = Mapper.Map<Entities.Product>(product);
+            _productRepository.AddProduct(categoryId, createdProductEntity);
             if (!_productRepository.Save())
                 return StatusCode(500, "A problem happened while handling your request");
-            var createdProduct = Mapper.Map<Models.ProductModel>(finalProduct);
-            return CreatedAtRoute("GetProduct", new { id = createdProduct.Id }, createdProduct);
+            var createdProductModel = Mapper.Map<Models.ProductModel>(createdProductEntity);
+            return CreatedAtRoute("GetProduct", new { id = createdProductModel.Id }, createdProductModel);
         }
         [HttpPost("{productId}/productImage", Name = "GetProductImage")]
         [Authorize]

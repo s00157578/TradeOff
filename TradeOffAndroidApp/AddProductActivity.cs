@@ -17,7 +17,7 @@ using TradeOffAndroidApp.Core.Services;
 using System.Linq;
 using Android.Views;
 using Plugin.SecureStorage;
-
+//standard controller actions connecting to productRepository
 namespace TradeOffAndroidApp
 {
     [Activity(Label = "Sell Product")]   
