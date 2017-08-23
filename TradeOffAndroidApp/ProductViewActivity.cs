@@ -19,6 +19,7 @@ namespace TradeOffAndroidApp
     public class ProductViewActivity : Activity
     {
         private ImageConversion _imageCoverter;
+        private EmailRepository _emailRepository;
         private ProductRepository _productRepository;
         private ProductImageRepository _productImageRepository;
         private ProductModel _product;
@@ -32,10 +33,12 @@ namespace TradeOffAndroidApp
         private Button _btnEmail;
         private Button _btnDelete;
         private Button _btnEdit;
+        private TextView _textViewWarning;
         private CredentialRepository _credentialRepository;
         private string _userId;
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            _emailRepository = new EmailRepository();
             _productRepository = new ProductRepository();
             _credentialRepository = new CredentialRepository();
             _productImageRepository = new ProductImageRepository();
@@ -64,7 +67,7 @@ namespace TradeOffAndroidApp
              IEnumerable<ProductImageModel> images = await _productImageRepository.GetProductImages(productId);
             _imageList = images.ToList();
         }
-        private void manageAuthorisation()
+        private async void manageAuthorisation()
         {
             if (_userId != _product.UserId)
             {
@@ -73,9 +76,16 @@ namespace TradeOffAndroidApp
             }
             else
                 _btnEmail.Visibility = ViewStates.Invisible;
+            bool hasEmailed = await _emailRepository.HasEmailedBefore(_product.Id);
+            if (hasEmailed)
+            {
+                _btnEmail.Visibility = ViewStates.Invisible;
+                _textViewWarning.Text = "You already emailed the seller of this product.";
+            }         
         }
         private void FindViews()
         {
+            _textViewWarning = FindViewById<TextView>(Resource.Id.txtViewWarning);
             _imageView = FindViewById<ImageView>(Resource.Id.imageProduct);
             _nameView = FindViewById<TextView>(Resource.Id.txtViewProductName);
             _btnLocation = FindViewById<Button>(Resource.Id.btnLocation);
@@ -109,6 +119,13 @@ namespace TradeOffAndroidApp
         {
             if (CrossSecureStorage.Current.HasKey("idToken"))
             {
+                if(_emailRepository.EmailSeller(_product.Id))
+                {
+                    _btnEmail.Visibility = ViewStates.Invisible;
+                    _textViewWarning.Text = "You already emailed the seller of this product.";
+                }
+                else
+                    _textViewWarning.Text = "Something went wrong. Try again Later";
             }
             else
             {

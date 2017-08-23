@@ -6,102 +6,111 @@
     android:minWidth="25px"
     android:minHeight="25px"
     android:background="@android:color/white">
-  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-      android:orientation="vertical"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:paddingLeft="20dp"
-      android:paddingRight="20dp"
-      android:background="@android:color/white">
-    <ImageView
-        android:src="@android:drawable/ic_menu_gallery"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageProduct"
-        android:layout_gravity="center_horizontal" />
-    <TextView
-        android:text="Item Name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtViewProductName"
-        android:paddingTop="20dp"
-        android:textSize="20dp"
-        android:textColor="@android:color/black" />
-    <RelativeLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="15dp">
-      <Button
-          android:text="Go to Location"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:id="@+id/btnLocation"
-          android:textSize="16dp"
-          android:textColor="@android:color/holo_blue_dark"
-          android:background="@android:color/background_light"
-          android:layout_alignParentLeft="true"
-          android:layout_marginTop="10dp"
-          android:layout_marginBottom="10dp" />
-    </RelativeLayout>
-    <TextView
-        android:text="Short Description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtViewShortDescription"
-        android:textSize="16dp"
-        android:textColor="@android:color/black"
-        android:layout_marginTop="10dp" />
-    <TextView
-        android:text="Full Description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtViewFullDescription"
-        android:paddingTop="20dp"
-        android:textSize="12dp"
-        android:textColor="@android:color/black" />
-    <TextView
-        android:text="Price"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtViewPrice"
-        android:paddingTop="20dp"
-        android:textSize="16dp"
-        android:textColor="@android:color/black" />
-    <RelativeLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp">
-      <Button
-          android:text="Delete Product"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:id="@+id/btnDelete"
-          android:background="@android:color/holo_red_dark"
-          android:layout_centerInParent="false"
-          android:layout_alignParentLeft="true"
-          android:layout_centerVertical="true"
-          android:layout_marginTop="35dp" /> 
-      <Button
-          android:text="Edit Item"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:id="@+id/btnEdit"
-          android:layout_marginTop="35dp"
-          android:background="@android:color/holo_blue_dark"
-          android:layout_centerVertical="true"
-          android:layout_marginLeft="135dp" />
-      <Button
-          android:text="Email Seller"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:id="@+id/btnEmail"
-          android:layout_alignParentRight="true"
-          android:layout_centerInParent="true"
-          android:layout_marginTop="35dp"
-          android:background="@android:color/holo_green_light" />
-    </RelativeLayout>
-  </LinearLayout>
+        android:layout_height="match_parent"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:background="@android:color/white">
+        <ImageView
+            android:src="@android:drawable/ic_menu_gallery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageProduct"
+            android:layout_gravity="center_horizontal" />
+        <TextView
+            android:text="Item Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtViewProductName"
+            android:paddingTop="20dp"
+            android:textSize="20dp"
+            android:textColor="@android:color/black" />
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp">
+            <Button
+                android:text="Go to Location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnLocation"
+                android:textSize="16dp"
+                android:textColor="@android:color/holo_blue_dark"
+                android:background="@android:color/background_light"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp" />
+        </RelativeLayout>
+        <TextView
+            android:text="Short Description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtViewShortDescription"
+            android:textSize="16dp"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="10dp" />
+        <TextView
+            android:text="Full Description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtViewFullDescription"
+            android:paddingTop="20dp"
+            android:textSize="12dp"
+            android:textColor="@android:color/black" />
+        <TextView
+            android:text="Price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtViewPrice"
+            android:paddingTop="20dp"
+            android:textSize="16dp"
+            android:textColor="@android:color/black" />
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
+            <Button
+                android:text="Delete Product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnDelete"
+                android:background="@android:color/holo_red_dark"
+                android:layout_centerInParent="false"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="35dp" />
+            <Button
+                android:text="Edit Item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnEdit"
+                android:layout_marginTop="35dp"
+                android:background="@android:color/holo_blue_dark"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="135dp" />
+            <Button
+                android:text="Email Seller"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnEmail"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="35dp"
+                android:background="@android:color/holo_green_light" />
+        </RelativeLayout>
+        <TextView
+            android:text=""
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtViewWarning"
+            android:paddingTop="5dp"
+            android:textSize="12dp"
+            android:textColor="@android:color/holo_green_dark"
+            android:layout_marginBottom="5dp" />
+    </LinearLayout>
 </ScrollView>

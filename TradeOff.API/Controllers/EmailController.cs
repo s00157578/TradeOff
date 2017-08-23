@@ -68,7 +68,7 @@ TradeOff Team.";
                 _emailRepository.AddEmail(emailedEntity);
                 return NoContent();              
             }
-            return BadRequest();
+            return BadRequest("Email could not be sent");
         }
         [HttpGet("{productId}/hasEmailedBefore")]
         public IActionResult HasEmailedBefore(int productId)
