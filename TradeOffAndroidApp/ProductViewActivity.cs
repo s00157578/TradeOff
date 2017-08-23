@@ -122,7 +122,7 @@ namespace TradeOffAndroidApp
                 if(_emailRepository.EmailSeller(_product.Id))
                 {
                     _btnEmail.Visibility = ViewStates.Invisible;
-                    _textViewWarning.Text = "You already emailed the seller of this product.";
+                    _textViewWarning.Text = "email sent to the seller of this product.";
                 }
                 else
                     _textViewWarning.Text = "Something went wrong. Try again Later";
