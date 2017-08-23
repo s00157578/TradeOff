@@ -51,7 +51,7 @@ namespace TradeOffAndroidApp
             GetId();
             FindViews();
             SetViews();
-            manageAuthorisation();
+            ManageAuthorisation();
             HandleEvents();
         }
         private async void GetId()
@@ -67,7 +67,7 @@ namespace TradeOffAndroidApp
              IEnumerable<ProductImageModel> images = await _productImageRepository.GetProductImages(productId);
             _imageList = images.ToList();
         }
-        private async void manageAuthorisation()
+        private async void ManageAuthorisation()
         {
             if (_userId != _product.UserId)
             {
@@ -108,14 +108,14 @@ namespace TradeOffAndroidApp
         }
         private void HandleEvents()
         {
-            _btnEmail.Click += btnEmail_Click;
-            _btnLocation.Click += btnLocation_Click;
-            _btnEdit.Click += btnEdit_Click;
-            _btnDelete.Click += btnDelete_Click;
+            _btnEmail.Click += BtnEmail_Click;
+            _btnLocation.Click += BtnLocation_Click;
+            _btnEdit.Click += BtnEdit_Click;
+            _btnDelete.Click += BtnDelete_Click;
 
         }
 
-        private void btnEmail_Click(object sender, EventArgs e)
+        private void BtnEmail_Click(object sender, EventArgs e)
         {
             if (CrossSecureStorage.Current.HasKey("idToken"))
             {
@@ -134,14 +134,14 @@ namespace TradeOffAndroidApp
             }
 
         }
-        private void btnEdit_Click(object sender, EventArgs e)
+        private void BtnEdit_Click(object sender, EventArgs e)
         {
             var intent = new Intent();
             intent.SetClass(this, typeof(EditProductActivity));
             intent.PutExtra("selectedProductId", _product.Id);
             StartActivityForResult(intent, 100);
         } 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void BtnDelete_Click(object sender, EventArgs e)
         {
             _productRepository.DeleteProduct(_product.Id);
             var intent = new Intent();
@@ -150,7 +150,7 @@ namespace TradeOffAndroidApp
             StartActivity(intent);
             Finish();
         }
-        private void btnLocation_Click (object sender, EventArgs e)
+        private void BtnLocation_Click (object sender, EventArgs e)
         {
             var coOrds = $"geo:{_product.Location}";
             var geoUri = Android.Net.Uri.Parse(coOrds);
