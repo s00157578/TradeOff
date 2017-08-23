@@ -23,6 +23,7 @@ namespace TradeOffAndroidApp
         private EditText _editPrice;
         private TextView _textViewWarning;
         private Button _btnSubmit;
+        private Button _btnCancel;
         private ProductRepository _productRepository;
         ProductModel product;
         protected override void OnCreate(Bundle savedInstanceState)
@@ -45,6 +46,7 @@ namespace TradeOffAndroidApp
             _editFullDescription = FindViewById<EditText>(Resource.Id.txtEditFullDescription);
             _editPrice = FindViewById<EditText>(Resource.Id.txtEditPrice);
             _btnSubmit = FindViewById<Button>(Resource.Id.btnSubmit);
+            _btnCancel = FindViewById<Button>(Resource.Id.btnCancel);
             _textViewWarning = FindViewById<TextView>(Resource.Id.txtViewWarning);
         }
         private async void GetProduct(int id)
@@ -62,14 +64,20 @@ namespace TradeOffAndroidApp
         private void HandleEvents()
         {
             _btnSubmit.Click += BtnSubmit_Click;
+            _btnCancel.Click += BtnCancel_Click;
         }
+
+        private void BtnCancel_Click(object sender, EventArgs e)
+        {
+            GoToProductView(product.Id);
+        }
+
         private void BtnSubmit_Click(object sender, EventArgs e)
         {
             //reads inputs for basic validation
             bool isValid = ReadInputs();
             if (isValid)
             {
-                int userId = 1;
                     //creates product
                     ProductUpdateModel productToUpdate = new ProductUpdateModel()
                     {
@@ -78,7 +86,7 @@ namespace TradeOffAndroidApp
                         ShortDescription = _editShortDescription.Text,
                         FullDescription = _editFullDescription.Text,
                         Price = decimal.Parse(_editPrice.Text),
-                        UserId = userId,
+                        UserId = product.UserId
                     };
                     bool isUpdated = _productRepository.UpdateProduct(product.CategoryId,product.Id, productToUpdate);
                 if (isUpdated)
@@ -124,7 +132,7 @@ namespace TradeOffAndroidApp
             var intent = new Intent();
             intent.SetClass(this, typeof(ProductViewActivity));
             intent.PutExtra("selectedProductId", productId);
-            StartActivityForResult(intent, 100);
+            StartActivity(intent);
             Finish();
         }
     }

@@ -13,5 +13,6 @@ namespace TradeOff.API.Entities
         public  DbSet<Product> Products { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<EmailedProduct> EmailedProducts { get; set; }
     }
 }

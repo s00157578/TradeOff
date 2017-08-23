@@ -39,15 +39,16 @@ namespace TradeOffAndroidApp
             _productRepository = new ProductRepository();
             _credentialRepository = new CredentialRepository();
             _productImageRepository = new ProductImageRepository();
-            _imageCoverter = new ImageConversion();
-            GetId();
+            _imageCoverter = new ImageConversion();           
             base.OnCreate(savedInstanceState);
             var selectedProductId = Intent.Extras.GetInt("selectedProductId");
             GetProduct(selectedProductId);
             GetImages(selectedProductId);
             SetContentView(Resource.Layout.IndividualProductView);
+            GetId();
             FindViews();
             SetViews();
+            manageAuthorisation();
             HandleEvents();
         }
         private async void GetId()
@@ -129,7 +130,7 @@ namespace TradeOffAndroidApp
             var intent = new Intent();
             intent.SetClass(this, typeof(ProductListActivity));
             intent.PutExtra("selectedCategoryId", _product.CategoryId);
-            StartActivityForResult(intent, 100);
+            StartActivity(intent);
             Finish();
         }
         private void btnLocation_Click (object sender, EventArgs e)

@@ -49,7 +49,10 @@ namespace TradeOffAndroidApp
 
         private void _btnCreateAccount_Click(object sender, EventArgs e)
         {
-            
+            var intent = new Intent();
+            intent.SetClass(this, typeof(CreateAccountActivity));
+            StartActivity(intent);
+            Finish();
         }
 
         private void _btnLogin_Click(object sender, EventArgs e)

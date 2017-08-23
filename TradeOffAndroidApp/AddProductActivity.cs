@@ -73,7 +73,8 @@ namespace TradeOffAndroidApp
         //gets logged in users id
         private async void GetId()
         {
-           _userId = await _credentialRepository.GetUserId();
+           string userId = await _credentialRepository.GetUserId();
+            _userId = userId;
         }
         //on return from camera app read file from the specified path and set the imageview to the image, (based off xamarin tutorial)
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)

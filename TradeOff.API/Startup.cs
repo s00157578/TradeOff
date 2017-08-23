@@ -66,6 +66,7 @@ namespace TradeOff.API
             var connectionString = Configuration["connectionStrings:tradeOffDBConnectionString"];
             services.AddDbContext<TradeOffContext>(o => o.UseSqlServer(connectionString)).AddIdentity<IdentityUser, IdentityRole>();
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IEmailRepository, EmailRepository>();
             services.AddTransient<TradeOffIdentitySeeder>();
             services.AddIdentity<IdentityUser, IdentityRole>()
        .AddEntityFrameworkStores<TradeOffContext>();

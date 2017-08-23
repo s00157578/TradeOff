@@ -12,6 +12,7 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
+        "SendGridKey": "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",
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },

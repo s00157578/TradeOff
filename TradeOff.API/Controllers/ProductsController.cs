@@ -17,11 +17,13 @@ namespace TradeOff.API.Controllers
     public class ProductsController : Controller
     {
         private IProductRepository _productRepository;
+        private IEmailRepository _emailRepository;
         private readonly UserManager<IdentityUser> _userManager;
-        public ProductsController(IProductRepository productRepository, UserManager<IdentityUser> userManager)
+        public ProductsController(IProductRepository productRepository,IEmailRepository emailRepository, UserManager<IdentityUser> userManager)
         {
             _productRepository = productRepository;
-            _userManager = userManager;
+            _emailRepository = emailRepository;
+            _userManager = userManager;          
         }
 
         [HttpGet]
@@ -209,8 +211,10 @@ namespace TradeOff.API.Controllers
                 return NotFound();
             _productRepository.DeleteProduct(productEntity);
             _productRepository.DeleteImagesForProduct(id);
+            _emailRepository.DeleteEmailedProducts(id);
             if (!_productRepository.Save())
                 return StatusCode(500, "A problem happened while handling your request");
+            _emailRepository.Save();
             return NoContent();
         }
         [HttpDelete("productImage/{id}")]
@@ -227,7 +231,7 @@ namespace TradeOff.API.Controllers
                 return StatusCode(500, "A problem happened while handling your request");
             return NoContent();
         }
-
+        
     }
 }
   
