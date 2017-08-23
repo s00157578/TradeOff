@@ -44,7 +44,7 @@ namespace TradeOff.API.Controllers
                 return NotFound();
             if (_emailRepository.HasEmailedBefore(buyingUserId, product.Id))
                 return BadRequest("user already emailed seller of product");
-            var apiKey = Environment.GetEnvironmentVariable("SendGridKey");
+            var apiKey = "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";
             var client = new SendGridClient(apiKey);
             var from = new EmailAddress("TradeOffProject@gmail.com", "TradeOff");            
             var to = new EmailAddress(sellingEmail, sellingEmail);
