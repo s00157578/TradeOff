@@ -120,6 +120,9 @@ namespace TradeOff.API
 
                 cfg.CreateMap<Models.ProductUpdateModel, Entities.Product>();
                 cfg.CreateMap<Entities.Product, Models.ProductUpdateModel>();
+
+                cfg.CreateMap<Models.EmailedProductModel, Entities.EmailedProduct>();
+                cfg.CreateMap<Entities.EmailedProduct, Models.EmailedProductModel>();
             });
             //log to console, if development use exception page
             loggerFactory.AddConsole();

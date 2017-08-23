@@ -8,6 +8,8 @@ using SendGrid.Helpers.Mail;
 using System;
 using System.Threading.Tasks;
 using TradeOff.API.Entities;
+using TradeOff.API.Models;
+using AutoMapper;
 
 namespace TradeOff.API.Controllers
 {
@@ -59,8 +61,9 @@ TradeOff Team.";
             var response = await client.SendEmailAsync(message);
             if(response.StatusCode == System.Net.HttpStatusCode.Accepted)
             {
-                EmailedProduct emailedProduct = new EmailedProduct() { UserId = buyingUserId, ProductId = product.Id };
-                _emailRepository.AddEmail(emailedProduct);
+                EmailedProductModel emailedProduct = new EmailedProductModel() { UserId = buyingUserId, ProductId = product.Id };
+                var emailedEntity = Mapper.Map<Entities.EmailedProduct>(emailedProduct);
+                _emailRepository.AddEmail(emailedEntity);
                 return NoContent();              
             }
             return BadRequest();
